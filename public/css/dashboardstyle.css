@@ -1,0 +1,72 @@
+.container
+        {
+            max-width: 1080;
+            padding: 20px;
+            margin: 0 auto;
+             background-color:#ECEFF4;
+      
+        }
+        .btnprofile{
+           
+            height: 80px;
+            width: 80px;
+            border-radius: 50px;
+            margin-top: 20px;
+        }
+        .nav
+        {
+            display: flex;
+            justify-content: space-between;
+            background-color:#51f0a9;
+            margin: -20px;
+            margin-bottom: 80px;
+        }
+        .main
+        {
+            
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            height: 460px;  
+        }
+        .card
+        {
+            height: 90px;
+            width: 200px;
+            background-color:#98e4c2;
+            border-radius: 30PX;
+            display:flex ;
+            justify-content: center;
+            align-items: center;
+        }
+        .r1 
+        {
+            display: flex;
+            gap: 120px;
+        }
+        .r2 
+        {
+            display: flex;
+            gap: 120px;
+        }
+        .r3
+        {
+            display: flex;
+            gap: 120px;
+        }
+        .txtcard
+        {
+            text-align: center;
+            color: rgb(111, 120, 138);
+            font-weight: bolder;
+        }
+        .txtheader
+        {
+            color: rgb(111, 120, 138);
+            font-weight: bolder;
+        }
+        a{
+            text-decoration: none;
+            color: rgb(111, 120, 138);
+        }
