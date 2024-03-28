@@ -33,7 +33,7 @@ exports.update_data= async (req, res) => {
 
     
 
-    
+
     jsonData ={
         fname: 'suraj',
         designation: 'manager',
@@ -107,11 +107,11 @@ exports.update_data= async (req, res) => {
 exports.listingdata = async (req, res) => {
 
 
-        let data  = new con("localhost","root","password","node_temp");
+        let data  = new con("localhost","root","password","node_dashboard");
         let sql = `select canid,
         fname,
         lname
-        from candidateMaster`
+        from candidateMaster1`
         var [result] =await data.queary(sql)
         
     
@@ -133,7 +133,7 @@ exports.insertdata = async (req, res) => {
 
     let sql   =     `
 
-        INSERT INTO candidateMaster ( fname, lname, designation, city, state, email, phoneNo, zipCode, gender, relationship, dob, add1) VALUES (`
+        INSERT INTO candidateMaster1 ( fname, lname, designation, city, state, email, phoneNo, zipCode, gender, relationship, dob, add1) VALUES (`
 
     function genrate_queray(sql,data)
     {
@@ -182,7 +182,7 @@ exports.insertdata = async (req, res) => {
         
 
     }
-    var data  = new con("localhost","root","password","node_temp");
+    var data  = new con("localhost","root","password","node_dashboard");
 
     
 

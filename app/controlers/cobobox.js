@@ -16,9 +16,10 @@ exports.combo = async (req, res) => {
     //GIVE THE  BOX NAME FROME THE BODY
     box_name = req.body.txtbox ;
     //MAKE THE OBJECT OF THE CONNECTION CLASS ND CALL THE CONSTRUTOR 
-    var data  = new con("localhost","root","password","node_employee");
+    var data  = new con("localhost","root","password","node_dashboard");
     var sql = `select * from select_master where select_key = "${box_name}"`
     var [res1] =await data.queary(sql);
+    console.log("woek well",res1);
     // IF THE RSULT LENGTH IS MORE THAN ONE THAN CRERATE COMB
     if(res1.length>0)
     {

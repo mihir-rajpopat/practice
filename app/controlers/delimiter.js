@@ -4,7 +4,7 @@ exports.delimiter_get = async (req, res) => {
     var count = 1;
     var qr=""
     sql = `SELECT * FROM student_today limit 100`
-    var data = new con("localhost", "root", "password", "studen_obs");
+    var data = new con("localhost", "root", "password", "node_dashboard");
     var [res11] = await data.queary(sql)
     res.render("delimiter/index", {data: res11, count,qr,sql })
   }
@@ -108,7 +108,7 @@ exports.delimiter_get = async (req, res) => {
                 }
             }
 
-            var data = new con("localhost", "root", "password", "studen_obs");
+            var data = new con("localhost", "root", "password", "node_dashboard");
             var qr = `SELECT * FROM student_today WHERE `
 
             if (city.length)

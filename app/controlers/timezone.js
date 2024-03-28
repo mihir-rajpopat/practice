@@ -12,7 +12,7 @@ exports.timezone = async (req, res) => {
 exports.contryname = async (req, res) => {
 
 
-  var data  = new con("localhost","root","password","timezone");
+  var data  = new con("localhost","root","password","node_dashboard");
     sql = `SELECT DISTINCT country FROM city_country `
 
   var [res11] =await data.queary(sql)
@@ -31,7 +31,7 @@ exports.cityname = async (req, res) => {
     {
       let city = req.body.tag;
 
-      var data  = new con("localhost","root","password","timezone");
+      var data  = new con("localhost","root","password","node_dashboard");
 
     
 
@@ -50,7 +50,7 @@ exports.timezone_name = async (req, res) => {
   if(req.body.tag)
   {
     let city = req.body.tag;
-  var data  = new con("localhost","root","password","timezone");
+  var data  = new con("localhost","root","password","node_dashboard");
 
   
 

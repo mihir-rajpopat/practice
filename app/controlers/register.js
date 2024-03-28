@@ -30,7 +30,7 @@ exports.activeuser = async (req, res) => {
     async function getdata()
     {
       
-        let data = new con("localhost","root","password","node_auth"); 
+        let data = new con("localhost","root","password","node_dashboard"); 
         console.log("hello",req.query.activecode);
         let sql =` select * from user  WHERE active = '${req.query.activecode}'  and email= '${req.query.email}'`
         // console.log(sql);
@@ -80,7 +80,7 @@ exports.activeuser = async (req, res) => {
     async function update_user()
     {
         console.log(req.query);
-        let data  = new con("localhost","root","password","node_auth");
+        let data  = new con("localhost","root","password","node_dashboard");
         let sql =`UPDATE user SET status = 'active'  WHERE active = '${req.query.activecode}'  and email= '${req.query.email}'`
         console.log(sql);
         var [result] =await data.queary(sql);
@@ -109,7 +109,7 @@ exports.insert_database = async (req, res) => {
         const uid = new ShortUniqueId({ length: 12 });
         let active = uid.rnd();
         let sql = ` INSERT INTO user (firstname, lastname, email, password, active, solt) VALUES ('${req.body.firstname}', '${req.body.lastname}', '${req.body.email}', '${req.body.password}','${active}', '${req.body.solt}')`
-        let data  = new con("localhost","root","password","node_auth");
+        let data  = new con("localhost","root","password","node_dashboard");
         var [result] =await data.queary(sql);
         res.json({active:active})     
     }     
@@ -121,7 +121,7 @@ exports.mail = async (req, res) => {
     {
         let inmail = req.body.mail;
         console.log(inmail);
-        let data  = new con("localhost","root","password","node_auth");
+        let data  = new con("localhost","root","password","node_dashboard");
         let sql =`select count(*) as count from user where email = "${inmail}"`
         var [result] =await data.queary(sql)
         console.log(result);
@@ -146,7 +146,7 @@ exports.validateuser = async (req, res) => {
             async function getdata()
             {
             
-                let data = new con("localhost","root","password","node_auth"); 
+                let data = new con("localhost","root","password","node_dashboard"); 
                 let sql =` select * from user  WHERE email = '${req.body.email}'`
                 console.log(sql);
                 let [result] =await data.queary(sql);
@@ -209,7 +209,7 @@ exports.verify_user_byemail = async (req, res) => {
     async function email_verify(input_email)
     {
     
-        let data = new con("localhost","root","password","node_auth"); 
+        let data = new con("localhost","root","password","node_dashboard"); 
         let sql =` select count(*)  as count from user  WHERE email = '${input_email}'`
       
         let [result] =await data.queary(sql);
@@ -259,7 +259,7 @@ exports.set_password = async (req, res) => {
     async function get_data(input_email)
     {
     
-        let data = new con("localhost","root","password","node_auth"); 
+        let data = new con("localhost","root","password","node_dashboard"); 
         let sql =` select *  from user  WHERE email = '${input_email}'`
       
         let [result] =await data.queary(sql);
@@ -278,7 +278,7 @@ exports.set_password = async (req, res) => {
     async function update_email(input_email,input_password)
     {
     
-        let data = new con("localhost","root","password","node_auth"); 
+        let data = new con("localhost","root","password","node_dashboard"); 
         let sql =` UPDATE user SET password ='${input_password}'  WHERE email = '${input_email}'
         `
       

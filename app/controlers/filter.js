@@ -37,7 +37,7 @@ exports.filter = async (req, res) => {
 
     
      
-    var data = new con("localhost", "root", "password", "task2_node");
+    var data = new con("localhost", "root", "password", "node_dashboard");
     var [result] = await data.queary(sql)
     
     
@@ -62,7 +62,7 @@ exports.filter = async (req, res) => {
       select s.sid,s.name,count(s.sid) as presentDay from student_master as s join attan as a on s.sid = a.sid where CONCAT ( month(a.dop)," ",year(a.dop) ) = '${mn} ${yr}' and a.pre = 1 group by s.sid order by s.sid limit ${startingLimit},${resultpage}`;
     
     
-      var data = new con("localhost", "root", "password", "task2_node");
+      var data = new con("localhost", "root", "password", "node_dashboard");
       var [result1] = await data.queary(sql1)
     
            

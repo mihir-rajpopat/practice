@@ -6,10 +6,6 @@ exports.form = async (req, res) => {
     return res.render("crud/form", { message: "" })
 }
 
-
-
-
-
 exports.insert = async (req, res) => {
     
     uid = 0;
@@ -19,7 +15,7 @@ exports.insert = async (req, res) => {
 
     let sql   =     `
 
-        INSERT INTO candidateMaster ( fname, lname, designation, city, state, email, phoneNo, zipCode, gender, relationship, dob, add1) VALUES (`
+        INSERT INTO candidateMaster1 ( fname, lname, designation, city, state, email, phoneNo, zipCode, gender, relationship, dob, add1) VALUES (`
 
     function genrate_queray(sql,data)
     {
@@ -68,7 +64,7 @@ exports.insert = async (req, res) => {
         
 
     }
-    var data  = new con("localhost","root","password","node_temp");
+    var data  = new con("localhost","root","password","node_dashboard");
 
     
 
@@ -393,17 +389,15 @@ exports.insert = async (req, res) => {
  
 }
 
-
-
 exports.listing = async (req, res) => {
 
 
- var data  = new con("localhost","root","password","node_temp");
+ var data  = new con("localhost","root","password","node_dashboard");
 
  let sql = `select canid,
  fname,
  lname
-  from candidateMaster`
+  from candidateMaster1`
  var [res11] =await data.queary(sql)
 
 
@@ -429,11 +423,11 @@ exports.update_form  =   async (req , res ) =>{
     {
 
 
-        var data  = new con("localhost","root","password","node_temp");
+        var data  = new con("localhost","root","password","node_dashboard");
 
 
             table_names = [
-                'candidateMaster',
+                'candidateMaster1',
                 'educationDetails',
                 'languageKnown',
                 'preference',
