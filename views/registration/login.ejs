@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+
+    <style>
+        
+        .card
+        {
+            background-color: rgb(255, 255, 255);
+            width: 300px;
+            height: 430px;
+            margin: auto;
+            margin-top: 70px;
+            box-shadow: 0 4px 8px 0 rgba(173, 51, 51, 0.2), 0 6px 20px 0 rgba(224, 105, 105, 0.19);
+        }
+        .head
+        {
+            font-size: larger;
+            font-weight: bold;
+            margin-left: 100px;
+           
+        }
+        .card
+        {
+            display: flex;
+        
+            flex-direction: column;
+            gap: 20px;
+
+        }
+        .email
+        {
+            border: none;
+            border-bottom: 1px solid black;
+            width: 150px;
+            
+        }
+        .email:focus
+        {
+            outline: none;
+        }
+        .emaildiv
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .btn
+        {
+            background-color:#8aeec1;
+            width: 150px;
+            height: 30px;
+            text-align: center;
+        }
+
+        .btn:hover
+        {
+            background-color:#19f08f;
+            width: 200px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 8px 0 rgba(173, 51, 51, 0.2), 0 6px 20px 0 rgba(224, 105, 105, 0.19);
+        }
+        .headdiv
+        {
+            border-bottom: 1px solid black;
+            background-color:#8aeec1;
+            font-size: x-large;
+            font-weight: bolder;
+           
+        }
+        .subdiv
+        {
+            padding-left: 30px;
+            display: flex;
+        
+            flex-direction: column;
+            gap: 20px;
+
+        }
+        .txtheader
+            {
+                color: rgb(111, 120, 138);
+                font-weight: bolder;
+            }
+            .container
+            {
+                max-width: 1080;
+                padding: 20px;
+                margin: 0 auto;
+                background-color:#ECEFF4;
+        
+            }
+            .nav
+            {
+                display: flex;
+                justify-content: space-between;
+                background-color:#51f0a9;
+                margin: -20px;
+                margin-bottom: 10px;
+            }
+            .btnprofile
+            {
+                display: flex;
+                margin-right: 100px;
+                gap: 20px;
+                align-items: center;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+            }
+         
+         
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+
+    <div class="nav container">
+
+        <div class="txtheader">
+            <h1>LOGIN</h1>
+        </div>
+
+        <div class="btnprofile">
+            <div>
+
+                     <a href="/"> DASHBOARD</a>
+            </div>
+            <div>
+
+                <P>  <i class="fa-regular fa-user fa-2xl"></i> </P> 
+            </div>
+        </div>
+
+    </div>
+
+    <div class="main">
+        <div class="card">
+            <div class="headdiv"> 
+                <div class="head">
+                    <p>Login</p>
+                </div>
+            </div> 
+
+            <div class="subdiv">
+
+            <div class="txt">
+                <p>Enter your login deatil below </p>
+            </div>
+
+            <div class="emaildiv">
+                <label for="email" required>  Email</label>
+                <input type="text" class="email" id="email" placeholder="Email">
+            </div>
+
+            <div class="emaildiv">
+                <label for="email">Password</label>
+                <input type="password" id="password" class="email" placeholder="Password">
+            </div>
+     
+            <div >
+                <p onclick="check()" class="btn">Login</p>
+                <p onclick="forgot()">Forgot Password ?</p>
+                <p > <a href="/registration"> sign up</a></p>
+            </div>
+
+         
+        </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+
+
+<script>
+
+
+   async  function check()
+    {
+                let email = document.getElementById("email").value;
+                let password = document.getElementById("password").value;
+                if(email != '' && password!='') 
+                {
+
+                    let isvalidate = true ;
+                  async function validate_user(email,password)
+                  {
+                              var  url = window.location.origin  + "/validateuser"
+                                  let data1 ={
+                                      email : email,
+                                      password : password,
+                                   
+                                  }
+                               
+                                  let result_validate = await fetch(url, {
+                                  method: 'post',
+                                  body: JSON.stringify(data1),
+                                  headers: {'Content-Type':'application/json'},
+                                  })
+    
+                                  result_validate = await result_validate.json()
+                                   console.log(result_validate.validate);
+                                  return result_validate;                           
+                   }
+    
+    
+                  let input_email = document.getElementById("email").value;
+                  let input_password = document.getElementById("password").value;
+                  let response_validate = await validate_user(input_email,input_password);
+                  
+                  // console.log("response from the validate_user() is " , response_validate);
+                  if(response_validate.validate == true)
+                  {
+                      // alert("Login Succeful")
+                      window.location ="/"
+                  }
+                  else
+                  {
+                      alert("Invalid Credential")
+                  }
+                }
+
+
+    }
+
+    async function forgot()
+    {
+        
+
+            window.location.href = window.location.origin + "/forgot_password"
+
+
+    }
+</script>
+
+</html>

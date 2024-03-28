@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body
+        {
+            background-color: rgb(250, 250, 250);
+            width: 100%;
+            height: 100%;
+           
+        }
+        .head
+        {
+            margin-right: 100px;
+        }
+        .card
+        {
+            background-color: rgb(255, 255, 255);
+            width: 300px;
+            height: 450px;
+            margin: auto;
+            margin-top: 1px;
+            box-shadow: 0 4px 8px 0 rgba(173, 51, 51, 0.2), 0 6px 20px 0 rgba(224, 105, 105, 0.19);
+        }
+        .head
+        {
+            font-size: larger;
+            font-weight: bold;
+            margin-left: 100px;
+           
+        }
+        .card
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+    
+        }
+        .email
+        {
+            border: none;
+            border-bottom: 1px solid black;
+            width: 150px;
+            
+        }
+        .email:focus
+        {
+            outline: none;
+        }
+        .emaildiv
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .btn
+        {
+            background-color:#98e4c2;
+            width: 150px;
+            height: 30px;
+            text-align: center;
+        }
+    
+        .btn:hover
+        {
+            background-color:#24df8a;
+            width: 200px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 8px 0 rgba(173, 51, 51, 0.2), 0 6px 20px 0 rgba(224, 105, 105, 0.19);
+        }
+        .headdiv
+        {
+            border-bottom: 1px solid black;
+            background-color:#98e4c2;
+            font-size: large;
+            font-weight: bolder;
+            text-align: center;
+           
+        }
+        .subdiv
+        {
+            padding-left: 30px;
+            display: flex;
+        
+            flex-direction: column;
+            gap: 20px;
+    
+        }
+        .txtheader
+            {
+                color: rgb(111, 120, 138);
+                font-weight: bolder;
+            }
+            .container
+            {
+                max-width: 1080;
+                padding: 20px;
+                margin: 0 auto;
+                background-color:#ECEFF4;
+        
+            }
+            .nav
+            {
+                display: flex;
+                justify-content: space-between;
+                background-color:#51f0a9;
+                margin: -20px;
+                margin-bottom: 40px;
+            }
+            .btnprofile
+            {
+                display: flex;
+                margin-right: 100px;
+                gap: 20px;
+                align-items: center;
+            }
+            a
+            {
+                text-decoration: none;
+                color: black;
+            }
+         
+    
+    
+    </style>
+    
+</head>
+
+
+<body>
+    
+
+        <div class="container">
+
+    <div class="nav container">
+
+        <div class="txtheader">
+            <h1>FORGOT PASSWORD</h1>
+        </div>
+
+        <div class="btnprofile">
+            <div>
+
+                     <a href="/"> DASHBOARD</a>
+            </div>
+            <div>
+
+                <P>  <i class="fa-regular fa-user fa-2xl"></i> </P> 
+            </div>
+        </div>
+
+    </div>
+
+        <div class="main">
+            <div class="card">
+                <div class="headdiv"> 
+                    <div class="head">
+                        <p>forgot password</p>
+                    </div>
+                </div> 
+    
+                <div class="subdiv">
+    
+                <div class="txt">
+                    <p>Enter registered Email to Forgot Your Password </p>
+                </div>
+    
+                <div class="emaildiv">
+                    <label for="email">Email</label>
+                    <input type="text" class="email" id="email" placeholder="Email">
+                </div>
+                <div class="emaildiv" id="passdiv">
+                    <label for="email">new Password</label>
+                    <input type="password" class="email" id="password" placeholder="Enter New Password">
+                </div>
+    
+            
+    
+                
+                <div >
+                    <p onclick="verify()" class="btn" id="submit">Verify</p>
+                    <p onclick="forgot()" class="btn" id="update">Update </p>
+                    <p><a href="/login">LOGIN</a></p>
+               
+                </div>
+    
+             
+            </div>
+            </div>
+        </div>
+
+
+
+        
+
+        <script>
+
+
+                let input_passworddiv= document.getElementById("passdiv");
+
+                let update = document.getElementById("update");
+              
+                input_passworddiv.style.display = "none"
+                update.style.display = "none"
+            async function verify()
+            {
+
+                let input_email = document.getElementById("email").value;
+              
+
+                async  function verify_email(email)
+                {
+
+                    var  url =  window.location.origin + "/validate_email"
+                                let data1 ={
+                                    email : email,
+                                    
+                                 
+                                }
+                             
+                                let result_validate = await fetch(url, {
+                                method: 'post',
+                                body: JSON.stringify(data1),
+                                headers: {'Content-Type':'application/json'},
+                                })
+
+                                result_validate = await result_validate.json()
+                                
+                                return result_validate;  
+
+                }
+
+
+                let result = await verify_email(input_email);
+
+                if(result.isvalidate_user == 1)
+                {
+                    let input_passworddiv = document.getElementById("passdiv");
+                     input_passworddiv.style.display = "block"
+
+                     let update = document.getElementById("update");
+                     let submit = document.getElementById("submit");
+                     submit.style.display = "none"
+                     update.style.display = "block"
+                }
+            
+
+
+
+
+            }
+      
+      
+            async function forgot()
+            {
+                   
+                
+
+
+                async  function set_password(email,password)
+                {
+
+                    var  url = window.location.origin + "/set_password"
+                                let data1 ={
+                                    email : email,
+                                    password : password
+                                    
+                                 
+                                }
+                             
+                                let result_validate = await fetch(url, {
+                                method: 'post',
+                                body: JSON.stringify(data1),
+                                headers: {'Content-Type':'application/json'},
+                                })
+
+                                result_validate = await result_validate.json()
+                                
+                                return result_validate;  
+
+                }
+                let input_email = document.getElementById("email").value;
+                let input_password = document.getElementById("password").value;
+
+
+                let result = await  set_password(input_email,input_password)
+
+
+                if(result.isvalidate_user == false)
+                {
+                   
+
+                                Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Something went wrong!",
+                                
+                                });
+                }
+                else
+                {
+                         Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your Password Has Been Changeged",
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                }
+            
+
+                
+             }
+
+      </script>
+        </div>
+
+        
+   
+    
+
+</body>
+</html>

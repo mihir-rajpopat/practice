@@ -98,7 +98,7 @@
             <div class="btnprofile">
                 <div>
         
-                    <a href="/dashboard"> DASHBOARD</a>
+                         <a href="/"> DASHBOARD</a>
                 </div>
                 <div>
         
@@ -124,8 +124,11 @@
     
                 <div class="btn">   
             
-                <div class="btc">
+
+                  <div class="btc">
+                  <% if (page > 1) { %>
                     <a href="/filter?page=<%=1%>  <%= temp !== "November"?"&year="+temp : "" %> " > <<</a>
+                    <% } %> 
                 </div>
         
                 <div class="btc"> 
@@ -143,9 +146,11 @@
                   <a href="/filter?page=<%= page + 1%> <%= temp !== "November"?"&year="+temp : "" %> ">></a>
                   <% } %>
               </div>
-        
-            <div class="btc"> 
+              
+              <div class="btc"> 
+              <% if (page < numberOfPages) { %>
                 <a href="/filter?page=<%=numberOfPages%>  <%= temp !== "No vember"?"&year="+temp : "" %> ">>></a>
+                <% } %>
             </div>
         </div>
       

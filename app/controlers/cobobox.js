@@ -1,7 +1,6 @@
 
 const con = require("../../connection");
 
-
 //GET COMBO ROUTER CALL BACK FUNCTION 
 exports.combo = async (req, res) => {
 
@@ -10,7 +9,6 @@ exports.combo = async (req, res) => {
     var count = 0;
     res.render("combobox/index" , {count})
   }
-
 
   //POST CALLBACK BACK FUNCTION 
   exports.combo_post = async (req, res) => {
@@ -36,10 +34,7 @@ exports.combo = async (req, res) => {
     }    
     else{
         res.send("plese enster valid")
-    }
-
-
-  
+    }  
   }
   
 

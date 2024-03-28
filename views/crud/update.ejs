@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo</title>
+    <style>
+          .txtheader
+            {
+                color: rgb(111, 120, 138);
+                font-weight: bolder;
+            }
+            .container
+            {
+                max-width: 1080;
+                padding: 20px;
+                margin: 0 auto;
+                background-color:#ECEFF4;
+        
+            }
+            .nav
+            {
+                display: flex;
+                justify-content: space-between;
+                background-color:#51f0a9;
+                margin: -20px;
+                margin-bottom: 80px;
+            }
+            .btnprofile
+            {
+                display: flex;
+                margin-right: 100px;
+                gap: 20px;
+                align-items: center;
+            }
+         
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div class="nav container">
+    
+        <div class="txtheader">
+            <h1>CRUD</h1>
+        </div>
+
+        <div class="btnprofile">
+            <div>
+
+                     <a href="/"> DASHBOARD</a>
+            </div>
+            <div>
+
+                <P>  <i class="fa-regular fa-user fa-2xl"></i> </P> 
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3 style="text-align: center;">Job Application Form</h3>
+        <div class="results">
+            
+        </div>
+      
+        <div class="main">
+            <form action="/update" method="post" onsubmit="return validate()">
+                <div class="container">
+                    <fieldset>
+                        <legend>
+                            <h4>Basic Details </h4>
+                        </legend>
+                        <div class="basic">
+                            <div class="one">
+                                <p>
+                                    <label for="fname" >First Name:</label>
+                                    <input type="text" name="fname" id="fname" class="must" value= "<%= data[0][0].fname %>  " >
+                                </p>
+                                <p>
+                                    <label for="designation">Designation:</label>
+                                    <input type="text" name="designation" id="designation" class="must" value= "<%= data[0][0].designation %> ">
+                                </p>
+                                <p>
+                                    <label for="email">Email:</label>
+                                    <input type="text" name="email" id="email" class="must"  value= "<%= data[0][0].email %>">
+                                </p>
+                                <p id="gender">
+                                    <label for="gender">Gender:
+
+                                        <% if (data[0][0].gender == 'Male') { %>
+                                            <input type="radio" name="gender" id="male" value="Male" checked><label
+                                            for="Male">Male</label>
+                                        <% }else {%>
+
+                                            <input type="radio" name="gender" id="male" value="Male" ><label
+                                            for="Male">Male</label>
+                                        <% } %>
+
+
+
+                                        <% if (data[0][0].gender == 'Female') { %>
+                                           
+                                        <input type="radio" name="gender" id="female" value="Female" checked><label
+                                        for="Female">Female</label>
+                                        <% }else {%>
+
+                                            <input type="radio" name="gender" id="female" value="Female" ><label
+                                            for="Female">Female</label>
+                                        <% } %>
+
+
+                                        <% if (data[0][0].gender == 'other') { %>
+                                      
+                                    
+                                            <input type="radio" name="gender" id="other" value="Other" checked><label
+                                            for="Other">Other</label>
+                                    </label>
+                                        <% }else {%>
+
+                                            <input type="radio" name="gender" id="other" value="Other"><label
+                                            for="Other">Other</label>
+                                        <% } %>
+
+
+                                        
+
+                                        
+                                         
+                                </p>
+                                <p>
+                                    <label for="address">Address:</label>
+                                    <input type="text" name="address" id="address" class="must" value= "<%= data[0][0].add1 %> ">
+                                </p>
+                                <p>
+                                    <label for="state">State:</label>
+                                    <select name="state" id="state" class="must">
+                                        <option value="" disabled>Select option</option>
+                                        <option value="Gujrat">Gujrat</option>
+                                        <option value="Rajsthan">Rajsthan</option>
+                                        <option value="Maharastra">Maharastra</option>
+                                    </select>
+                                </p>
+                            </div>
+
+                            <div class="two">
+                                <p>
+                                    <label for="lname">Last Name:</label>
+                                    <input type="text" name="lname" id="lname" class="must" value= "<%= data[0][0].lname %> ">
+                                </p>
+                                <p>
+                                    <label for="dob">Birthdate:</label>
+                                    <input type="text" name="dob" id="dob" class="must" value= "<%= data[0][0].dob %> " >
+                                </p>
+                                <p>
+                                    <label for="phone">Phone No. :</label>
+                                    <input type="text" name="phone" id="phone" class="must" value= "<%= data[0][0].phoneNo %>">
+                                </p>
+                                <p>
+                                    <label for="relnstatus">Relationship Status:</label>
+                                    <select name="relnstatus" id="relnstatus" class="must" >
+                                        <option value="" disabled>Select option</option>
+                                        <% if (data[0][0].relationship == "unmerried") { %>
+                                         
+                                            <option value="Unmerried" selected>Unmerried</option>
+                                        <% }else {%>
+                                        <option value="Unmerried" >Unmerried</option>
+
+                                        <% } %>
+
+                                        <% if (data[0][0].relationship == "Merried") { %>
+                                         
+                                            
+                                        <option value="Merried" selected>Merried</option>
+                                        <% }else {%>
+                                         
+                                        <option value="Merried" >Merried</option>
+
+                                        <% } %>
+
+                                        <% if (data[0][0].relationship == "Seperated") { %>
+                                         
+                                            <option value="Seperated" selected>Seperated</option>
+                                        <% }else {%>
+                                        <option value="Seperated">Seperated</option>
+
+                                        <% } %>
+                                         
+                                      
+                                      
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="city">City:</label>
+                                    <input type="text" name="city" id="city" class="must" value= "<%= data[0][0].city %> ">
+                                </p>
+                                <p>
+                                    <label for="zipcode">Zipcode:</label>
+                                    <input type="text" name="zipcode" id="zipcode" class="must" value= "<%= data[0][0].zipCode %> ">
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <fieldset>
+                    <legend>
+                        <h4>Education Details</h4>
+                    </legend>
+                    <div class="education">
+                        <h4>Ssc Result</h4>
+                        <div class="ssc">
+
+                            <label for="sscnameofboard">Name of Board:
+                                <input type="text" name="sscnameofboard" id="sscnameofboard" class="must"  value= ' <%= data[1][0].board %> '></label>
+                            <label for="passingyear">Passing Year:
+                                <input type="text" name="sscpassingyear" id="sscpassingyear" class="must" value=" <%= data[1][0].passingYear %>" ></label>
+                            <label for="percentage">Percentage:
+                                <input type="text" name="sscpercentage" id="sscpercentage"  class="must"  value="<%= data[1][0].percentage %> "></label>
+                        </div>
+                        <hr>
+
+                        <h4>Hsc/Diploma Result</h4>
+                        <div class="hsc">
+
+                            <label for="hscnameofboard">Name of Board:
+                                <input type="text" name="hscnameofboard" id="hscnameofboard" class="must" value="<%= data[1][1].board %>"></label>
+                            <label for="passingyear">Passing Year:
+                                <input type="text" name="hscpassingyear" id="hscpassingyear" class="must" value="<%= data[1][1].passingYear %> "> </label>
+                            <label for="percentage">Percentage
+                                <input type="text" name="hscpercentage" id="hscpercentage" class="must" value="<%= data[1][1].percentage %> "></label>
+                        </div>
+
+                        <hr>
+
+
+                        <% if (data[1][2]) { %>
+                         
+                     
+                            <h4>Bachelor Degree</h4>
+                        <div class="bachelor">
+
+                            <% if (data[1][2]) { %>
+
+                                <label for="mastercourse">Course Name:
+                                    <input type="text" name="mastercourse" id="mastercourse" value="<%= data[1][2].board %>"></label>
+                            <% } else {%>
+
+                                <label for="bachelorcourse">Course Name:</label>
+                                <input type="text" name="bachelorcourse" id="bachelorcourse"></label>
+                                <% } %>
+
+
+
+                            <% if (data[1][2]) { %>
+
+                                <label for="bachelorpassingyear">Passing Year:</label>
+                                <input type="text" name="bachelorpassingyear" id="bachelorpassingyear" class="passingyear" value="<%= data[1][2].passingYear %>"></label>
+                                <% } else {%>
+    
+                                    <label for="bachelorpassingyear">Passing Year:</label>
+                                    <input type="text" name="bachelorpassingyear" id="bachelorpassingyear" class="passingyear"></label>
+                                    <% } %>
+
+
+                            <% if (data[1][2] ) { %>
+                              
+                                <label for="bachelorpercentage">Percentage</label>
+                                <input type="text" name="bachelorpercentage" id="bachelorpercentage"  value="<%= data[1][2].percentage %>"></label>
+                                <% } else {%>
+    
+                                 
+                            <label for="bachelorpercentage">Percentage</label>
+                            <input type="text" name="bachelorpercentage" id="bachelorpercentage" ></label>
+                                    <% } %>
+
+
+                                    
+                                
+                            
+                          
+                        
+                        </div>
+                        <hr>
+                        <% } %>
+
+                     
+
+                            <% if (data[1][3]) { %>
+                             
+                        
+
+                        <h4>Master Degree</h4>
+                        <div class="master">
+
+
+
+
+
+
+                            <% if (data[1][3]) { %>
+                                
+
+                                <label for="mastercourse">Course Name:
+                                    <input type="text" name="mastercourse" id="mastercourse" value="<%= data[1][3].board %>"></label>
+                             
+                                <% } else {%>
+    
+                                    <label for="mastercourse">Course Name:
+                                        <input type="text" name="mastercourse" id="mastercourse"></label>
+                                    <% } %>
+
+                            <% if (data[1][3]) { %>
+                                <label for="bachelorpassingyear">Passing Year:
+                                    <input type="text" name="masterpassingyear" id="masterpassingyear" class="passingyear"  value="<%= data[1][3].passingYear%>"></label>
+
+                             
+                                <% } else {%>
+    
+                                    <label for="bachelorpassingyear">Passing Year:
+                                        <input type="text" name="masterpassingyear" id="masterpassingyear" class="passingyear"  ></label>
+                                    <% } %>
+    
+
+                            <% if (data[1][3]) { %>
+
+                                          
+                            <label for="masterpercentage">Percentage:
+                                <input type="text" name="masterpercentage"  id="masterpercentage"value="<%= data[1][3].percentage%>" ></label>
+                                <% } else {%>
+    
+                                        
+                            <label for="masterpercentage">Percentage:
+                                <input type="text" name="masterpercentage" id="masterpercentage" ></label>
+                                    <% } %>
+    
+    
+                           
+                         
+                    
+                        </div>
+
+
+
+                    </div>
+
+                    <% } %>
+                </fieldset>
+
+
+                <div class="work">
+
+                    <fieldset>
+                        <legend>
+                            <h4>Work Experience</h4>
+                        </legend>
+
+
+                        <% if (data[6][0]) { %>
+
+                         
+                        <div class="experience1">
+                            <label for="companyname1">Company Name:</label>
+                            <input type="text" name="companyname1" id="companyname1" value="<%= data[6][0].companyName%>" >
+                            <label for="designation1">Designation:</label>
+                            <input type="text" name="designation1" id="designation1"  value="<%= data[6][0].designation%>">
+                            <label for="from1">From:</label>
+                            <input type="text" name="from1" id="from1" class="datevalidte" value="<%= data[6][0].fromDate%>" >
+                            <label for="to1">To :</label>
+                            <input type="text" name="to1" id="to1" class="datevalidte" value="<%= data[6][0].toDate%>">
+                        </div>
+
+                        <% } %>
+
+
+
+
+                        <% if (data[6][1]) { %>
+
+                       
+                        <div class="experience2">
+                            <label for="companyname2">Company Name:</label>
+                            <input type="text" name="companyname2" id="companyname2"value="<%= data[6][1].compneyName%>"> 
+                            <label for="designation2">Designation:</label>
+                            <input type="text" name="designation2" id="designation2" value="<%= data[6][1].designation%>">
+                            <label for="from2">From:</label>
+                            <input type="text" name="from2" id="from2" class="datevalidte" value="<%= data[6][1].fromDate%>">
+                            <label for="to2">To :</label>
+                            <input type="text" name="to2" id="to2" class="datevalidte" value="<%= data[6][1].toDate%>">
+                        </div>
+
+
+                        <% } %>
+
+
+
+                        <% if (data[6][2]) { %>
+                        <div class="experience3">
+
+                            <label for="companyname3">Company Name:</label>
+                            <input type="text" name="companyname3" id="companyname3"value="<%= data[6][2].compneyName%>">
+                            <label for="designation3">Designation:</label>
+                            <input type="text" name="designation3" id="designation3" value="<%= data[6][2].designation%>">
+                            <label for="from3">From:</label>
+                            <input type="text" name="from3" id="from3" class="datevalidte" value="<%= data[6][2].fromDate%>">
+                            <label for="to3">To :</label>
+                            <input type="text" name="to3" id="to3" class="datevalidte" value="<%= data[6][2].toDate%>">
+                        </div>
+
+                        <% } %>
+
+                    </fieldset>
+                </div>
+
+
+                <div class="langtech">
+                    <div class="lang">
+                        <fieldset>
+                            <legend>
+                                <h4>Language Known</h4>
+                            </legend>
+
+
+                    <% if (data[2][0]) { %>
+
+
+                        <div class="langdetail">
+                            <div>
+                                <input type="checkbox" name="lang1" id="hindi" value="hindi" class="lang1" checked>
+                                <label for="hindi">Hindi</label>
+                            </div>
+
+                            <div class="check">
+
+
+                                <% if (data[2][0].canWrite ==1) { %>
+                                    <input type="checkbox" name="langcheck1[]" id="read1" value="read" checked>
+                                    <label for="read1">Read</label>
+                                 
+                                <% } else{%>
+
+                                    <input type="checkbox" name="langcheck1[]" id="read1" value="read" >
+                                    <label for="read1">Read</label>
+
+                                    <%}%>
+
+
+
+                                    <% if (data[2][0].canRead ==1) { %>
+                                        <input type="checkbox" name="langcheck1[]" id="write1" value="write" checked>
+                                        <label for="write1">Write</label>
+                                     
+                                    <% } else{%>
+    
+                                        <input type="checkbox" name="langcheck1[]" id="write1" value="write">
+                                <label for="write1">Write</label>
+    
+                                        <%}%>
+
+
+                                    <% if (data[2][0].canSpeak ==1) { %>
+                                       
+                             
+                             
+                                <input type="checkbox" name="langcheck1[]" id="speak1" value="speak">
+                                <label for="speak1">Speak</label> <br><br>
+                                     
+                                    <% } else{%>
+    
+                             
+                             
+                                        <input type="checkbox" name="langcheck1[]" id="speak1" value="speak">
+                                        <label for="speak1">Speak</label> <br><br>
+    
+                                        <%}%>
+                             
+                            </div>
+                        </div>
+
+                     
+                    <% } %>
+                    <% if (data[2][1]) { %>
+
+                      
+                           
+                            <div class="langdetail">
+                                <div>
+                                    <input type="checkbox" name="lang2" id="gujrati" value="gujrati" class="lang1" checked>
+                                    <label for="gujrati">Gujrati</label>
+                                </div>
+                                <div class="check">
+
+                                <% if (data[2][1].canRead==1) { %>
+                                    <input type="checkbox" id="read2" name="langcheck2[]" value="read" checked>
+                                    <label for="read2">Read</label>
+                                 
+                                <% }else{ %>
+
+                                    <input type="checkbox" id="read2" name="langcheck2[]" value="read" >
+                                    <label for="read2">Read</label>
+
+                                    <%}%>
+
+
+                                <% if (data[2][1].canWrite==1) { %>
+                                    <input type="checkbox" id="write2" name="langcheck2[]" value="write" checked> 
+                                    <label for="write2">Write</label>
+                                 
+                                <% } else{%>
+
+                                    <input type="checkbox" id="write2" name="langcheck2[]" value="write" > 
+                                    <label for="write2">Write</label>
+                                 
+
+                                    <% } %>
+
+                                <% if (data[2][1].canSpeak==1) { %>
+                                    <input type="checkbox" id="speak2" name="langcheck2[]" value="speak" chaked>
+                                    <label for="speak2">Speak</label> <br><br>
+                                 
+                                <% } else{%>
+                                    <input type="checkbox" id="speak2" name="langcheck2[]" value="speak" >
+                                    <label for="speak2">Speak</label> <br><br>
+                                    <% } %>
+                               
+                               
+                               
+                                   
+                                 
+                                 
+                                </div>
+                            </div>
+
+                     
+                    <% } %>
+                
+
+                    <% if (data[2][2]) { %>
+
+                        <div class="langdetail error">
+                            <div>
+                                <input type="checkbox" name="lang3" value="english" id="english" class="lang1">
+                                <label for="english">English</label>
+                            </div>
+
+                            <div class="check">
+                                <input type="checkbox" id="read3" name="langcheck3[]" value="read">
+                                <label for="read3">Read</label>
+                                <input type="checkbox" id="write3" name="langcheck3[]" value="write">
+                                <label for="write3">Write</label>
+                                <input type="checkbox" id="speak3" name="langcheck3[]" value="speak">
+                                <label for="speak3">Speak</label> <br><br>
+                            </div>
+
+                        </div>
+
+                     
+                    <% } %>
+                          
+                        </fieldset>
+                    </div>
+                    <div class="tech">
+                        <fieldset>
+                            <legend>
+                                <h4>Technology you Know</h4>
+                            </legend>
+
+                            <% if (data[5][0]) { %>
+
+                                <div class="technology">
+                                    <div>
+
+                                        <input type="checkbox" name="php" id="php" value="php" class="tech1" checked>
+                                        <label for="php">PHP</label>
+        
+                                    </div>
+
+                                    <div class="techvalue">
+
+
+
+                                        <% if (data[5][0].level == "Beginner") { %>
+
+                                            <input type="radio" name="phptech" id="beginner1" value="Beginner" checked>
+
+
+                                        <label for="beginner1">Beginner</label>
+                                        <% }else{ %>
+
+                                            <input type="radio" name="phptech" id="beginner1" value="Beginner" >
+
+
+                                            <label for="beginner1">Beginner</label>
+
+                                            <%}%>
+
+
+                                        <% if (data[5][0].level == "Midetor") { %>
+
+                                            <input type="radio" name="phptech" id="midetor1" value="Midetor" checked>
+                                            <label for="midetor1">Midetor</label>
+
+
+                                        <label for="beginner1">Beginner</label>
+                                        <% }else{ %>
+
+                                         
+                                        <input type="radio" name="phptech" id="midetor1" value="Midetor">
+                                        <label for="midetor1">Midetor</label>
+
+                                            <%}%>
+
+
+
+                                        <% if (data[5][0].level == "Expert") { %>
+
+                                            <input type="radio" name="phptech" id="expert1" value="Expert" checked>
+                                            <label for="expert1">Expert</label><br><br>
+
+
+                                        <label for="beginner1">Beginner</label>
+                                        <% }else{ %>
+
+                                         
+                                      
+                                            <input type="radio" name="phptech" id="expert1" value="Expert">
+                                            <label for="expert1">Expert</label><br><br>
+                                            <%}%>
+                                     
+                                     
+                                    </div>
+                                </div>
+                                
+                             
+                            <% } %>
+                          
+                               <% if (data[5][1])  { %>
+
+                                <div class="technology">
+                                    <div>
+                                        <input type="checkbox" name="mysql" id="mysql" value="mysql" class="tech1" checked>
+                                        <label for="mysql">Mysql</label>
+                                    </div>
+                                    <div class="techvalue">
+
+                                        <% if (data[5][1].level == "Beginner") { %>
+
+                                            <input type="radio" name="mysqltech" id="beginner2" value="Beginner" checked>
+                                            <label for="beginner2">Beginner</label>
+                                         
+                                        <% } else{%>
+
+
+                                            <input type="radio" name="mysqltech" id="beginner2" value="Beginner">
+                                            <label for="beginner2">Beginner</label>
+
+                                            <% } %>
+
+
+                                            <% if (data[5][1].level == "Midetor") { %>
+
+                                                <input type="radio" name="mysqltech" id="midetor2" value="Midetor" checked>
+                                                <label for="midetor2">Midetor</label>
+                                             
+                                            <% }else{ %>
+
+                                                <input type="radio" name="mysqltech" id="midetor2" value="Midetor">
+                                                <label for="midetor2">Midetor</label>
+
+                                            <% } %>
+
+                                            <% if (data[5][1].level == "Expert") { %>
+
+
+                                                <input type="radio" name="mysqltech" id="expert2" value="Expert" checked>
+                                                <label for="expert2">Expert</label><br><br>
+                                             
+                                            <% }else{ %>
+
+
+                                                <input type="radio" name="mysqltech" id="expert2" value="Expert" >
+                                                <label for="expert2">Expert</label><br><br>
+                                             
+
+                                                <%}%>
+
+                                        
+                                      
+                                    
+                                    </div>
+                                </div>
+                               
+                                
+                               <% } %>
+                           
+
+                               <% if (data[5][2]) { %>
+
+                                <div class="technology">
+                                    <div>
+                                        <input type="checkbox" name="oracle" id="oracle" value="oracle" class="tech1" checked>
+                                        <label for="oracle">Oracle</label>
+                                    </div>
+                                    <div class="techvalue">
+                                        <input type="radio" name="oracletech" id="beginner3" value="Beginner">
+                                        <label for="beginner3">Beginner</label>
+                                        <input type="radio" name="oracletech" id="midetor3" value="Midetor">
+                                        <label for="midetor3">Midetor</label>
+                                        <input type="radio" name="oracletech" id="expert3" value="Expert">
+                                        <label for="expert3">Expert</label><br><br>
+                                    </div>
+                                </div>
+                                
+                                
+    
+                                
+                               <% } %>
+
+                               <% if (data[5][3]) { %>
+
+
+                            <div class="technology">
+                                <div>
+                                    <input type="checkbox" name="laravel" id="laravel" value="laravel" class="tech1" checked>
+                                    <label for="laravel">laravel</label>
+                                </div>
+                                <div class="techvalue">
+                                    <input type="radio" name="laraveltech" id="beginner4" value="Beginner">
+                                    <label for="beginner4">Beginner</label>
+                                    <input type="radio" name="laraveltech" id="midetor4" value="Midetor">
+                                    <label for="midetor4">Midetor</label>
+                                    <input type="radio" name="laraveltech" id="expert4" value="Expert">
+                                    <label for="expert4">Expert</label>
+                                </div>
+                            </div>
+                           
+                                
+                               <% } %>
+                           
+                         
+
+                          
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="refer">
+                    <fieldset>
+                        <legend>
+                            <h4>Reference Contact</h4>
+                        </legend>
+
+                        <% if (data[4][0]) { %>
+
+                         
+                        <div class="ref1">
+                            <label for="name">Name:
+                                <input type="text" name="name1" id="name"  value="<%= data[4][0].name%>"></label>
+                            <label for="contactnum">Contact Number:
+                                <input type="text" name="contactnum1" id="contactnum" class="reference"  value="<%= data[4][0].contactNo%>"></label>
+                            <label for="relation">Relation:
+                                <input type="text" name="relation1" id="relation"  value="<%= data[4][0].relation%>"></label> <br><br>
+                        </div>
+
+                        <% }  %>
+
+
+                        <% if (data[4][1]) { %>
+                            <div class="ref2">
+                                <label for="name">Name:
+                                    <input type="text" name="name2" id="name"></label>
+                                <label for="contactnum">Contact Number:
+                                    <input type="text" name="contactnum2" id="contactnum" class="reference"></label>
+                                <label for="relation">Relation:
+                                    <input type="text" name="relation2" id="relation"></label>
+                            </div>
+                         
+                        <% } %>
+                       
+                    </fieldset>
+                </div>
+
+                <div class="prefer">
+                    <fieldset>
+                        <legend>
+                            <h4>Preference</h4>
+                        </legend>
+
+
+                        <% if (data[3][0]) { %>
+                         
+                                       <div class="pref1">
+
+
+                        
+                            <label for="prefloc">Prefered Location
+                                <select name="prefloc" id="prefloc" class="must">
+
+                                    <option value="">Select option</option>
+                              
+
+                            <% if (data[3][0].preferedLocation == "Rajkot") { %>
+                                <option value="Rajkot" selected>Rajkot</option>
+                                
+                                <% }else{ %>
+    
+                                    <option value="Rajkot">Rajkot</option>
+    
+                                    <% } %>
+                                 
+                                    <% if (data[3][0].preferedLocation == "Ahmedabad") { %>
+                                        <option value="Ahmedabad" selected>Ahmedabad</option>
+                                        
+                                        <% }else{ %>
+            
+                                            <option value="Ahmedabad">Ahmedabad</option>
+            
+                                            <% } %>
+                                    
+                                   
+                                   
+                                </select></label>
+                            <label for="noticeperiod">Notice Period:
+                                <input type="text" name="noticeperiod" id="noticeperiod" class="must" value="<%= data[3][0].noticePeriod%>"></label>
+
+
+                              
+                            <label for="department">Department
+                                <select name="department" id="department" class="must">
+                                    <option value="" disabled>Select option</option>
+                                    <% if (data[3][0].department == "development") { %>
+                                        <option value="development" selected>Development</option>
+                                     
+                                    <% } else{%>
+    
+                                        <option value="development">Development</option>
+                                        <% } %>
+    
+                                        <% if (data[3][0].department == "design") { %>
+                                                
+                                        <option value="design" selected>Design</option>
+                                         
+                                        <% } else{%>
+            
+                                            <option value="design">Design</option>
+                                            <% } %>
+    
+                                            <% if (data[3][0].department == "design") { %>
+                                                
+                                                <option value="marketing">Marketing</option>
+                                                 
+                                                <% } else{%>
+                    
+                                                    <option value="marketing">Marketing</option>
+                                                    <% } %>
+                                
+                                   
+                                </select></label>
+                        </div>
+                     
+
+
+                      
+                        <div class="pref2">
+                            <label for="expectedctc">Expected CTC
+                                <input type="text" name="expectedctc" id="expectedctc" class="must" value="<%= data[3][0].expectedCTC%>"></label>
+                            <label for="currentctc">Current CTC
+                                <input type="text" name="currentctc" id="currentctc" class="must" value="<%= data[3][0].currentCTC%>"></label>
+                        </div>
+
+
+                    </fieldset>
+                    <% } %>  
+
+                </div>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+
+    <script src="/script.js"></script> 
+
+
+</body>
+
+</html>
