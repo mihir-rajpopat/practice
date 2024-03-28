@@ -32,6 +32,8 @@ exports.updatedata= async (req, res) => {
 exports.update_data= async (req, res) => {
 
     
+
+    
     jsonData ={
         fname: 'suraj',
         designation: 'manager',
