@@ -111,7 +111,8 @@ exports.insert_database = async (req, res) => {
         let sql = ` INSERT INTO user (firstname, lastname, email, password, active, solt) VALUES ('${req.body.firstname}', '${req.body.lastname}', '${req.body.email}', '${req.body.password}','${active}', '${req.body.solt}')`
         let data  = new con("localhost","root","password","node_dashboard");
         var [result] =await data.queary(sql);
-        res.json({active:active})     
+        res.json({active:active})   
+        console.log("object");  
     }     
 }
 
