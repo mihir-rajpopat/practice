@@ -82,9 +82,7 @@ const updateeducation = async (req, res, uid) => {
     // let array = [ssc, hsc, bachelor, master];
 
     let query = `select * from educationdetails where candid=${uid}`;
-
     var data  = new conn("localhost","root","password","node_dashboard");
-   
     let [edu] = await   data.queary(query);
 
     let degree = [];

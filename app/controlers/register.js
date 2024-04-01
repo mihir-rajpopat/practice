@@ -5,8 +5,6 @@ const ShortUniqueId = require('short-unique-id');
 
 const jwt =  require("jsonwebtoken")
 
-
-
 const jwt_secret = "mihir"
 
 //used for render sing up page 
@@ -234,16 +232,12 @@ exports.verify_user_byemail = async (req, res) => {
 }
 
 
-
 exports.forgot_password = async (req, res) => {
 
 
     res.render("registration/forgot")
  }
  
-
-
-
 exports.set_password = async (req, res) => {
 
     if(!req.body.email &&  !req.body.password)

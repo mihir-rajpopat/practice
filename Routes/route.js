@@ -2,7 +2,7 @@ const express = require("express");
 const route =  express.Router()
 
 
-const {dashboard,kukucube,tictac,event,dynamictable} = require("../app/controlers/create");
+const {kukucube,tictac,event,dynamictable, dashboard} = require("../app/controlers/create");
 const { delimiter_post, delimiter_get } = require("../app/controlers/delimiter");
 const { filter } = require("../app/controlers/filter");
 const { pagination } = require("../app/controlers/pagination");
@@ -15,7 +15,7 @@ const {hello,insertdata,listingdata,updatedata,update_data} = require("../app/co
 
 const { midtoken } = require("../app/middelwere/delimitersearch/auth");
 const { registration, verify, mail, insert_database, active, activeuser, validateuser, login, home, verify_user_byemail, forgot_password, set_password } = require("../app/controlers/register");
-
+    
 
 route.get('/',midtoken,dashboard)
 route.get('/kukucube',midtoken,kukucube)
@@ -28,7 +28,6 @@ route.get('/filter',midtoken,filter)
 route.get('/pagination',midtoken,pagination)
 route.get('/combo',midtoken,combo)
 route.post('/combo',midtoken,combo_post)
-
 route.get('/time',midtoken,timezone)
 route.post('/country',midtoken,contryname)
 route.post('/city',midtoken,cityname);
@@ -72,6 +71,14 @@ route.get('/login',login)
 route.post('/validate_email',verify_user_byemail)
 route.get('/forgot_password',forgot_password)
 route.post('/set_password',set_password)
+
+
+
+
+
+
+
+
 
 
 
