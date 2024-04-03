@@ -7,8 +7,6 @@ exports.timezone = async (req, res) => {
 }
 
 
-
-
 exports.contryname = async (req, res) => {
 
 
@@ -21,19 +19,12 @@ exports.contryname = async (req, res) => {
 
 }
 
-
-
-
-
 exports.cityname = async (req, res) => {
 
     if(req.body.tag)
     {
       let city = req.body.tag;
-
       var data  = new con("localhost","root","password","node_dashboard");
-
-    
 
       sql = `select city from city_country where country= "${city}"`
     var [res11] =await data.queary(sql)

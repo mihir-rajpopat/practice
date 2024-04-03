@@ -410,8 +410,6 @@ exports.listing = async (req, res) => {
     return res.render("crud/list" , {data :res11})
 }
 
-
-
 exports.update_form  =   async (req , res ) =>{
 
 
@@ -474,15 +472,10 @@ exports.update_form  =   async (req , res ) =>{
 }
 
 
-
-
 exports.update = async (req, res) => {
 
-
-
-
       let { fname, designation, email, gender, address, state, lname, dob, phone, relnstatus, city, zipcode, sscnameofboard, sscpassingyear, sscpercentage, hscnameofboard, hscpassingyear, hscpercentage, bachelorcourse, bacheloruniversity, bachelorpassingyear, bachelorpercentage, mastercourse, masteruniversity, masterpassingyear, masterpercentage, companyname1, designation1, from1, to1, companyname2, designation2, from2, to2, companyname3, designation3, from3, to3, lang1, langcheck1, lang2, langcheck2, lang3, langcheck3, php, phptech, mysql, mysqltech, oracle, oracletech, laravel, laraveltech, name1, contactnum1, relation1, name2, contactnum2, relation2, prefloc, noticeperiod, department, expectedctc, currentctc } = req.body;
-
+      
       let  basic = [fname,lname,designation,city,  state,email,phone,  zipcode, gender,relnstatus,  dob ,address];
 
     console.log(basic);
