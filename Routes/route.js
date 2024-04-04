@@ -22,6 +22,7 @@ route.get('/dyanmictable', midtoken, dynamictable)
 route.get('/delimiter', midtoken, delimiter_get)
 route.post('/delimiter', midtoken, delimiter_post)
 route.get('/filter', midtoken, filter)
+
 route.get('/sort', midtoken, sort)
 route.post('/sort', midtoken, sort_post)
 //genrate componenet

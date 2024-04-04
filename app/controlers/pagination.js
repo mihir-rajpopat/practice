@@ -26,11 +26,11 @@ exports.sort = async (req, res) => {
     const numOfResults = res11.length;
     const numberOfPages = Math.ceil(numOfResults / resultpage);
     let page = req.query.page ? Number(req.query.page) : 1;
-    if (page > numberOfPages) {
-        res.redirect('/?page=' + encodeURIComponent(numberOfPages));
-    } else if (page < 1) {
-        res.redirect('/?page=' + encodeURIComponent('1'));
-    }
+    // if (page > numberOfPages) {
+    //     res.redirect('/?page=' + encodeURIComponent(numberOfPages));
+    // } else if (page < 1) {
+    //     res.redirect('/?page=' + encodeURIComponent('1'));
+    // }
     const startingLimit = (page - 1) * resultpage;
 
     //     sql1 = sql + "limit" + startingLimit +resultpage
@@ -104,7 +104,7 @@ exports.sort_post = async (req, res) => {
     console.log(req.body);
 
     if (req.body.sub_id == '' && req.body.Marks == '' && req.body.s_id == '') {
-        return res.redirect("/")
+        return res.redirect("/sort")
     }
     else if (req.body.sub_id == '' && req.body.Marks == '') {
 

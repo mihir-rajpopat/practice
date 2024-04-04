@@ -1,6 +1,5 @@
 
 const con = require("../../connection");
-
 //GET COMBO ROUTER CALL BACK FUNCTION 
 exports.combo = async (req, res) => {
     var count = 0;

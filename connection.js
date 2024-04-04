@@ -23,6 +23,13 @@ class connection {
         let result = await this.con.query(sql);
         return result;
     }
+
+    async update(sql, content) {
+        console.log("sql is", sql);
+        let result = await this.con.query(sql, content);
+        console.log(result);
+        return result;
+    }
 }
 
 

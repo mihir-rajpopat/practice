@@ -1,4 +1,4 @@
-const express =  require("express")
+const express = require("express")
 
 const route = require("./Routes/route");
 const cookieParser = require("cookie-parser");
@@ -13,16 +13,16 @@ app.use(express.static("public"));
 
 // Set EJS as templating engine 
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
 
-app.use("/" , route);
+app.use("/", route);
 
 
 
 
 
-app.listen(7888) 
+app.listen(7888)
 

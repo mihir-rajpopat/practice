@@ -58,21 +58,62 @@
     #sid {
       display: flex;
     }
+
+    .txtheader {
+      color: rgb(111, 120, 138);
+      font-weight: bolder;
+    }
+
+    .container {
+      max-width: 1080;
+      padding: 20px;
+      margin: 0 auto;
+      background-color: #ECEFF4;
+
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      background-color: #51f0a9;
+      margin: -20px;
+      margin-bottom: 80px;
+    }
+
+    .btnprofile {
+      display: flex;
+      margin-right: 100px;
+      gap: 20px;
+      align-items: center;
+    }
   </style>
 </head>
 
 <body>
 
+
+  <div class="nav container">
+
+    <div class="txtheader">
+      <h1>Sort</h1>
+    </div>
+
+    <div class="btnprofile">
+      <div>
+
+        <a href="/"> DASHBOARD</a>
+      </div>
+      <div>
+
+        <P> <i class="fa-regular fa-user fa-2xl"></i> </P>
+      </div>
+    </div>
+
+  </div>
+
   <div class="marg">
     <form action="/sort" method="post">
-
-
       <div id="sid">
-
-
-
-
-
         <label> search Box</label>
         <input type="text" name="s_id" placeholder="Enter student id">
       </div>
@@ -80,44 +121,24 @@
       <input type="button" value="viewmore" id="btn" onclick="sub()">
       <input type="submit" value="go">
 
-
-
-
-
       <br>
       <br>
       <div name="sub">
 
         <label> Subject_id</label>
         <input type="text" name="sub_id" placeholder="EnteR Subject Id">
-
-
-
         <label> Marks</label>
         <input type="text" name="Marks" placeholder="EnteR Marks">
-
-
-
-
-
       </div>
-
-
-
-
-
 
     </form>
 
   </div>
 
   <% if (count==1) { %>
-
-
     <!-- <%- include('pagination') %> -->
     <table>
       <%- include('header') %>
-
 
         <%- include('data') %>
     </table>

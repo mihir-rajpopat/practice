@@ -6,45 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combo</title>
     <style>
-        .txtheader
-          {
-              color: rgb(111, 120, 138);
-              font-weight: bolder;
-          }
-          .container
-          {
-              max-width: 1080;
-              padding: 20px;
-              margin: 0 auto;
-              background-color:#ECEFF4;
-      
-          }
-          .nav
-          {
-              display: flex;
-              justify-content: space-between;
-              background-color:#51f0a9;
-              margin: -20px;
-              margin-bottom: 80px;
-          }
-          .btnprofile
-          {
-              display: flex;
-              margin-right: 100px;
-              gap: 20px;
-              align-items: center;
-          }
-       
-  </style>
+        .txtheader {
+            color: rgb(111, 120, 138);
+            font-weight: bolder;
+        }
 
-  
+        .container {
+            max-width: 1080;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: #ECEFF4;
+
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #51f0a9;
+            margin: -20px;
+            margin-bottom: 80px;
+        }
+
+        .btnprofile {
+            display: flex;
+            margin-right: 100px;
+            gap: 20px;
+            align-items: center;
+        }
+    </style>
+
+
 </head>
 
 <body>
 
 
     <div class="nav container">
-    
+
         <div class="txtheader">
             <h1>CRUD</h1>
         </div>
@@ -52,16 +50,16 @@
         <div class="btnprofile">
             <div>
 
-                     <a href="/"> DASHBOARD</a>
+                <a href="/"> DASHBOARD</a>
             </div>
             <div>
 
-                <P>  <i class="fa-regular fa-user fa-2xl"></i> </P> 
+                <P> <i class="fa-regular fa-user fa-2xl"></i> </P>
             </div>
         </div>
     </div>
 
- 
+
     <div class="container">
         <div>
 
@@ -69,9 +67,9 @@
         </div>
         <h3 style="text-align: center;">Job Application Form</h3>
         <div class="results">
-            
+
         </div>
-      
+
         <div class="main">
             <form action="/insert" method="post" onsubmit="return validate()">
                 <div class="container">
@@ -84,6 +82,7 @@
                                 <p>
                                     <label for="fname">First Name:</label>
                                     <input type="text" name="fname" id="fname" class="must">
+
                                 </p>
                                 <p>
                                     <label for="designation">Designation:</label>
@@ -168,7 +167,7 @@
                             <label for="passingyear">Passing Year:
                                 <input type="text" name="sscpassingyear" id="sscpassingyear" class="must"></label>
                             <label for="percentage">Percentage:
-                                <input type="text" name="sscpercentage" id="sscpercentage"  class="must"></label>
+                                <input type="text" name="sscpercentage" id="sscpercentage" class="must"></label>
                         </div>
                         <hr>
 
@@ -192,9 +191,10 @@
                             <label for="bacheloruniversity">University:</label>
                             <input type="text" name="bacheloruniversity" id="bacheloruniversity"></label>
                             <label for="bachelorpassingyear">Passing Year:</label>
-                            <input type="text" name="bachelorpassingyear" id="bachelorpassingyear" class="passingyear"></label>
+                            <input type="text" name="bachelorpassingyear" id="bachelorpassingyear"
+                                class="passingyear"></label>
                             <label for="bachelorpercentage">Percentage</label>
-                            <input type="text" name="bachelorpercentage" id="bachelorpercentage" ></label>
+                            <input type="text" name="bachelorpercentage" id="bachelorpercentage"></label>
                         </div>
 
                         <hr>
@@ -206,9 +206,10 @@
                             <label for="masteruniversity">University:
                                 <input type="text" name="masteruniversity" id="masteruniversity"></label>
                             <label for="bachelorpassingyear">Passing Year:
-                                <input type="text" name="masterpassingyear" id="masterpassingyear" class="passingyear"></label>
+                                <input type="text" name="masterpassingyear" id="masterpassingyear"
+                                    class="passingyear"></label>
                             <label for="masterpercentage">Percentage:
-                                <input type="text" name="masterpercentage" id="masterpercentage" ></label>
+                                <input type="text" name="masterpercentage" id="masterpercentage"></label>
                         </div>
 
 
@@ -325,7 +326,7 @@
                                 <div>
                                     <input type="checkbox" name="php" id="php" value="php" class="tech1">
                                     <label for="php">PHP</label>
-    
+
                                 </div>
                                 <div class="techvalue">
                                     <input type="radio" name="phptech" id="beginner1" value="Beginner">
@@ -336,7 +337,7 @@
                                     <label for="expert1">Expert</label><br><br>
                                 </div>
                             </div>
-                            
+
                             <div class="technology">
                                 <div>
                                     <input type="checkbox" name="mysql" id="mysql" value="mysql" class="tech1">
@@ -351,8 +352,8 @@
                                     <label for="expert2">Expert</label><br><br>
                                 </div>
                             </div>
-                           
-                           
+
+
                             <div class="technology">
                                 <div>
                                     <input type="checkbox" name="oracle" id="oracle" value="oracle" class="tech1">
@@ -367,8 +368,8 @@
                                     <label for="expert3">Expert</label><br><br>
                                 </div>
                             </div>
-                            
-                            
+
+
 
 
                             <div class="technology">
@@ -385,8 +386,8 @@
                                     <label for="expert4">Expert</label>
                                 </div>
                             </div>
-                           
-                          
+
+
                         </fieldset>
 
                     </div>
@@ -458,9 +459,7 @@
         </div>
     </div>
 
-
-    <script src="/script.js"></script> 
-
+    <script src="/js/script.js"></script>
 
 </body>
 

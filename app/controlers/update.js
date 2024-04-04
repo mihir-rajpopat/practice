@@ -3,7 +3,7 @@ let conn = require("../../connection")
 
 const getdata = async (req, res, table, uid, order) => {
     let sql = `select * from ${table} where candid=${uid} order by ${order}`;
-    var data  = new conn("localhost","root","password","node_dashboard");
+    var data = new conn("localhost", "root", "password", "node_dashboard");
     let [result] = await data.queary(sql)
     return result;
 
@@ -33,7 +33,7 @@ const updatebasic = async (req, res, uid) => {
         "zipcode": zipcode
     };
 
-    var data  = new conn("localhost","root","password","node_dashboard");
+    var data = new conn("localhost", "root", "password", "node_dashboard");
     let [result] = await data.queary(sql, [basicdetail, uid])
     return result;
 
@@ -82,8 +82,8 @@ const updateeducation = async (req, res, uid) => {
     // let array = [ssc, hsc, bachelor, master];
 
     let query = `select * from educationdetails where candid=${uid}`;
-    var data  = new conn("localhost","root","password","node_dashboard");
-    let [edu] = await   data.queary(query);
+    var data = new conn("localhost", "root", "password", "node_dashboard");
+    let [edu] = await data.queary(query);
 
     let degree = [];
 
@@ -135,7 +135,7 @@ const updateeducation = async (req, res, uid) => {
 
 //red
 const updateworkexperience = async (req, res, uid) => {
-    var data  = new conn("localhost","root","password","node_dashboard");
+    var data = new conn("localhost", "root", "password", "node_dashboard");
     let { workid, companyname, designation, from, to } = req.body;
 
     let sql = `update workexperiences set ? where  wid=?`;
@@ -152,9 +152,9 @@ const updateworkexperience = async (req, res, uid) => {
 
             if (array["companyname"] && !workid[i]) {
 
-                [result] = await   data.queary(`insert into workexperiences set candid=${uid},?`, [array]);
+                [result] = await data.queary(`insert into workexperiences set candid=${uid},?`, [array]);
             } else {
-                [result] = await   data.queary(sql, [array, workid[i]]);
+                [result] = await data.queary(sql, [array, workid[i]]);
             }
 
 
@@ -163,7 +163,7 @@ const updateworkexperience = async (req, res, uid) => {
 
             // console.log(result);
         } if (companyname[i].trim() == "" && workid[i]) {
-            [result] = await   data.queary(`delete from workexperiences where candid=${uid} and wid=${workid[i]}`);
+            [result] = await data.queary(`delete from workexperiences where candid=${uid} and wid=${workid[i]}`);
         }
 
     }
@@ -179,8 +179,8 @@ const updatelanguageknowns = async (req, res, uid) => {
 
 
 
- 
-    var data  = new conn("localhost","root","password","node_dashboard");
+
+    var data = new conn("localhost", "root", "password", "node_dashboard");
 
     let { lang1, langcheck1, lang2, langcheck2, lang3,
         langcheck3 } = req.body;
@@ -265,7 +265,7 @@ const updatetechnology = async (req, res, uid) => {
     let { php, phptech, mysql, mysqltech, oracle, oracletech, laravel, laraveltech } = req.body;
 
     let result;
-    let data  = new conn("localhost","root","password","node_dashboard");
+    let data = new conn("localhost", "root", "password", "node_dashboard");
 
     let sql = `update technologyknowns set ? where candid=? and techname=?`;
 
@@ -348,8 +348,8 @@ const updatereference = async (req, res, uid) => {
     let { refid, name, contactnum, relation } = req.body;
 
     let sql = `update reference set ? where candid=? and refid=?`;
-    let data  = new conn("localhost","root","password","node_dashboard");
-   
+    let data = new conn("localhost", "root", "password", "node_dashboard");
+
 
     let array = {};
     let result;
@@ -364,15 +364,15 @@ const updatereference = async (req, res, uid) => {
 
 
             if (array["person_name"] && !refid[i]) {
-                [result] = await  data.queary(`insert into reference set candid=${uid},?`, [array]);
+                [result] = await data.queary(`insert into reference set candid=${uid},?`, [array]);
             } else {
-                [result] = await  data.queary(sql, [array, uid, refid[i]]);
+                [result] = await data.queary(sql, [array, uid, refid[i]]);
             }
 
 
 
         } if (name[i].trim() == "" && refid[i]) {
-            [result] = await  data.queary(`delete from reference where candid=${uid} and refid=${refid[i]}`);
+            [result] = await data.queary(`delete from reference where candid=${uid} and refid=${refid[i]}`);
         }
 
     }
@@ -384,9 +384,9 @@ const updatereference = async (req, res, uid) => {
 }
 
 const updatepreference = async (req, res, uid) => {
-    let data  = new conn("localhost","root","password","node_dashboard");
+    let data = new conn("localhost", "root", "password", "node_dashboard");
 
-   
+
     let { prefloc, noticeperiod, department, expectedctc, currentctc } = req.body
     let sql = `update preferences set ? where candid=?`;
     let preference = {
@@ -412,7 +412,7 @@ const updatepreference = async (req, res, uid) => {
 exports.getdataforupdate = async (req, res) => {
 
     let id = Number(req.params.id);
-    let data  = new conn("localhost","root","password","node_dashboard");
+    let data = new conn("localhost", "root", "password", "node_dashboard");
 
     // let sql=`select * from basicdetails where candid=?`
     let basicdetail = await getdata(req, res, "basicdetails", id, "candid")
@@ -440,7 +440,7 @@ exports.getdataforupdate = async (req, res) => {
 }
 
 exports.updateform = async (req, res) => {
-   
+
     let { candid, fname, currdesignation, email, gender, address, state, lname, dob, phone, relnstatus,
         city, zipcode, sscnameofboard, sscpassingyear, sscpercentage, hscnameofboard, hscpassingyear,
         hscpercentage, bachelorcourse, bachelorpassingyear, bachelorpercentage, mastercourse,
@@ -448,7 +448,7 @@ exports.updateform = async (req, res) => {
         langcheck3, php, phptech, mysql, mysqltech, oracle, oracletech, laravel, laraveltech, name, contactnum, relation,
         prefloc, noticeperiod, department, expectedctc, currentctc } = req.body
 
-      
+
     if (!fname || !currdesignation || !email || !gender || !address || !state || !lname || !dob || !phone || !relnstatus || !city || !zipcode
 
         || !sscnameofboard || !sscpassingyear || !sscpercentage ||
@@ -567,7 +567,7 @@ exports.updateform = async (req, res) => {
         }
 
         return res.json({ success: true, message: "Data Updated SucessFully" })
-      
+
     }
 
 }
