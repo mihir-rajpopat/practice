@@ -20,15 +20,27 @@ class connection {
 
 
     async queary(sql) {
-        let result = await this.con.query(sql);
-        return result;
+        try {
+
+            let result = await this.con.query(sql);
+            return result;
+        } catch (error) {
+            console.log(error);
+
+        }
     }
 
     async update(sql, content) {
-        console.log("sql is", sql);
-        let result = await this.con.query(sql, content);
-        console.log(result);
-        return result;
+        try {
+
+            console.log("sql is", sql);
+            let result = await this.con.query(sql, content);
+            console.log(result);
+            return result;
+        } catch (error) {
+            console.log(error);
+
+        }
     }
 }
 

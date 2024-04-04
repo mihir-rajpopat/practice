@@ -3,9 +3,7 @@ let con = require("../../connection")
 console.log("1");
 let md5 = require('md5');
 const ShortUniqueId = require('short-unique-id');
-
 const jwt = require("jsonwebtoken")
-
 const jwt_secret = "mihir"
 
 //used for render sing up page 
@@ -21,9 +19,7 @@ exports.active = async (req, res) => {
 
 //check user is active or not and update the user 
 exports.activeuser = async (req, res) => {
-
     let msg = "hello";
-
     // console.log(req.query);
 
     async function getdata() {
@@ -32,7 +28,6 @@ exports.activeuser = async (req, res) => {
         console.log("hello", req.query.activecode);
         let sql = ` select * from user  WHERE active = '${req.query.activecode}'  and email= '${req.query.email}'`
         // console.log(sql);
-
         let [result] = await data.queary(sql);
         return result;
     }
@@ -47,36 +42,40 @@ exports.activeuser = async (req, res) => {
 
     if (result[0].email == req.query.email && result[0].active == req.query.activecode) {
 
-        let timeStart = new Date(result[0].create_at);
-        console.log("start time ", timeStart);
-        let timeEnd = new Date();
-        let difference = timeEnd - timeStart;
-        console.log("end time is ", timeEnd);
+        try {
 
-
-
-        let minite = parseInt((difference / (1000 * 60)) % 60);
-
-
-        if (minite < 1) {
-            update_user();
-            msg = "activate"
-        }
-        else {
-            msg = "linkexpire"
+            let timeStart = new Date(result[0].create_at);
+            console.log("start time ", timeStart);
+            let timeEnd = new Date();
+            let difference = timeEnd - timeStart;
+            console.log("end time is ", timeEnd);
+            let minite = parseInt((difference / (1000 * 60)) % 60);
+            if (minite < 1) {
+                update_user();
+                msg = "activate"
+            }
+            else {
+                msg = "linkexpire"
+            }
+        } catch (error) {
+            res.send(error)
         }
 
 
     }
 
-
-
     async function update_user() {
-        console.log(req.query);
-        let data = new con("localhost", "root", "password", "node_dashboard");
-        let sql = `UPDATE user SET status = 'active'  WHERE active = '${req.query.activecode}'  and email= '${req.query.email}'`
-        console.log(sql);
-        let [result] = await data.queary(sql);
+        try {
+
+            console.log(req.query);
+            let data = new con("localhost", "root", "password", "node_dashboard");
+            let sql = `UPDATE user SET status = 'active'  WHERE active = '${req.query.activecode}'  and email= '${req.query.email}'`
+            console.log(sql);
+            let [result] = await data.queary(sql);
+        } catch (error) {
+            res.send(error)
+
+        }
 
     }
     console.log(msg);
@@ -84,46 +83,62 @@ exports.activeuser = async (req, res) => {
 }
 //veryfy the genrate the solt and encrypt the password
 exports.verify = async (req, res) => {
+    try {
 
-    if (req.body) {
-        let pass1 = req.body.password;
-        const uid = new ShortUniqueId({ length: 4 });
-        let pass2 = uid.rnd();
-        pass1 += pass2;
-        pass1 = md5(pass1);
-        res.json({ password: pass1, solt: pass2 })
+        if (req.body) {
+            let pass1 = req.body.password;
+            const uid = new ShortUniqueId({ length: 4 });
+            let pass2 = uid.rnd();
+            pass1 += pass2;
+            pass1 = md5(pass1);
+            res.json({ password: pass1, solt: pass2 })
+        }
+    } catch (error) {
+        res.send(error)
     }
+
 }
 //insert the data in to the database 
 exports.insert_database = async (req, res) => {
-    if (req.body) {
-        const uid = new ShortUniqueId({ length: 12 });
-        let active = uid.rnd();
-        let sql = ` INSERT INTO user (firstname, lastname, email, password, active, solt) VALUES ('${req.body.firstname}', '${req.body.lastname}', '${req.body.email}', '${req.body.password}','${active}', '${req.body.solt}')`
-        let data = new con("localhost", "root", "password", "node_dashboard");
-        let [result] = await data.queary(sql);
-        res.json({ active: active })
-        console.log("object");
+    try {
+        if (req.body) {
+            const uid = new ShortUniqueId({ length: 12 });
+            let active = uid.rnd();
+            let sql = ` INSERT INTO user (firstname, lastname, email, password, active, solt) VALUES ('${req.body.firstname}', '${req.body.lastname}', '${req.body.email}', '${req.body.password}','${active}', '${req.body.solt}')`
+            let data = new con("localhost", "root", "password", "node_dashboard");
+            let [result] = await data.queary(sql);
+            res.json({ active: active })
+            console.log("object");
+        }
+    } catch (error) {
+        res.send(error)
+
     }
 }
 
 //used for check main is alrady there or not 
 exports.mail = async (req, res) => {
-    if (req.body) {
-        let inmail = req.body.mail;
-        console.log(inmail);
-        let data = new con("localhost", "root", "password", "node_dashboard");
-        let sql = `select count(*) as count from user where email = "${inmail}"`
-        let [result] = await data.queary(sql)
-        console.log(result);
-        let bol = false;
-        console.log(result[0].count);
-        if (result[0].count == 0) {
-            bol = true;
+    try {
+        if (req.body) {
+            let inmail = req.body.mail;
+            console.log(inmail);
+            let data = new con("localhost", "root", "password", "node_dashboard");
+            let sql = `select count(*) as count from user where email = "${inmail}"`
+            let [result] = await data.queary(sql)
+            console.log(result);
+            let bol = false;
+            console.log(result[0].count);
+            if (result[0].count == 0) {
+                bol = true;
 
+            }
+
+            res.json({ mail: bol })
         }
 
-        res.json({ mail: bol })
+    } catch (error) {
+        res.send(error)
+
     }
 }
 
@@ -132,7 +147,6 @@ exports.mail = async (req, res) => {
 exports.validateuser = async (req, res) => {
 
     let isvalidate_user = true;
-
     async function getdata() {
 
         let data = new con("localhost", "root", "password", "node_dashboard");
@@ -143,8 +157,6 @@ exports.validateuser = async (req, res) => {
     }
 
     let result = await getdata();
-
-
     let decrypt_password;
     let password_input = req.body.password;
     let solt = result[0].solt;
@@ -157,19 +169,12 @@ exports.validateuser = async (req, res) => {
 
     }
 
-
-
     let payload = {
         email: result[0].email
 
     }
 
     let token = jwt.sign(payload, jwt_secret, { expiresIn: "1d" })
-
-
-
-
-
     res.cookie("token", token, { maxAge: 2 * 60 * 1000 }).json({ validate: isvalidate_user })
 }
 

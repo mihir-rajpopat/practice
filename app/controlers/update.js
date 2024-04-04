@@ -2,10 +2,17 @@ const moment = require("moment");
 let conn = require("../../connection")
 
 const getdata = async (req, res, table, uid, order) => {
-    let sql = `select * from ${table} where candid=${uid} order by ${order}`;
-    var data = new conn("localhost", "root", "password", "node_dashboard");
-    let [result] = await data.queary(sql)
-    return result;
+
+    try {
+
+        let sql = `select * from ${table} where candid=${uid} order by ${order}`;
+        var data = new conn("localhost", "root", "password", "node_dashboard");
+        let [result] = await data.queary(sql)
+        return result;
+    } catch (error) {
+        res.send(error)
+
+    }
 
 }
 
