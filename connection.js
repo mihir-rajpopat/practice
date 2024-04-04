@@ -1,7 +1,4 @@
 
-
-
-
 class connection {
     constructor(host, user, password, database) {
         let mysql = require('mysql2');
@@ -14,10 +11,7 @@ class connection {
             dateStrings: true
 
         }).promise();
-
-
     }
-
 
     async queary(sql) {
         try {
