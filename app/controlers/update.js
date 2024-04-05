@@ -448,6 +448,7 @@ exports.getdataforupdate = async (req, res) => {
 
 exports.updateform = async (req, res) => {
 
+
     let { candid, fname, currdesignation, email, gender, address, state, lname, dob, phone, relnstatus,
         city, zipcode, sscnameofboard, sscpassingyear, sscpercentage, hscnameofboard, hscpassingyear,
         hscpercentage, bachelorcourse, bachelorpassingyear, bachelorpercentage, mastercourse,

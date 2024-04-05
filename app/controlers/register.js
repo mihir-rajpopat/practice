@@ -142,7 +142,6 @@ exports.mail = async (req, res) => {
     }
 }
 
-
 //used for login check user password is right or not and email is available or not
 exports.validateuser = async (req, res) => {
 
