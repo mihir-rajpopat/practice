@@ -8,10 +8,13 @@ const { filter } = require("../app/controlers/filter");
 const { pagination, sort, sort_post } = require("../app/controlers/pagination");
 const { combo, combo_post } = require("../app/controlers/cobobox");
 const { timezone, contryname, cityname, timezone_name } = require("../app/controlers/timezone")
-const { form, insert, update_form, update, listing } = require("../app/controlers/crud")
-const { hello, insertdata, listingdata, updatedata, update_data, render_form } = require("../app/controlers/crudajax");
+// const { form, insert, update_form, update, listing } = require("../app/controlers/crud")
+// const { hello, insertdata, listingdata, updatedata, update_data, render_form } = require("../app/controlers/crudajax");
 const { midtoken } = require("../app/middelwere/delimitersearch/auth");
 const { registration, verify, mail, insert_database, active, activeuser, validateuser, login, home, verify_user_byemail, forgot_password, set_password } = require("../app/controlers/register");
+const { getform, insertdata, result } = require("../app/controlers/ajaxController/indexController");
+const { getdataforupdate, updateform } = require("../app/controlers/ajaxController/updateController");
+const { jobgetform, jobinsertdata, jobresult, jobgetdataforupdate, jobupdateform } = require("../app/controlers/jobController/indexController");
 
 
 route.get('/', midtoken, dashboard)
@@ -34,17 +37,17 @@ route.post('/country', midtoken, contryname)
 route.post('/city', midtoken, cityname);
 route.post('/timezone', midtoken, timezone_name);
 //crud
-route.get('/insert', midtoken, form)
-route.get('/list', midtoken, listing)
-route.post('/insert', midtoken, insert);
-route.get('/update', midtoken, update_form);
-route.post('/update', midtoken, update);
+// route.get('/insert', midtoken, form)
+// route.get('/list', midtoken, listing)
+// route.post('/insert', midtoken, insert);
+// route.get('/update', midtoken, update_form);
+// route.post('/update', midtoken, update);
 //for the crud ajax
-route.get('/insertdata', midtoken, render_form)
-route.post("/insertdata", midtoken, insertdata);
-route.get('/listdata', midtoken, listingdata)
-route.get('/updatedata', midtoken, updatedata)
-route.get('/update_data', midtoken, update_data)
+// route.get('/insertdata', midtoken, render_form)
+// route.post("/insertdata", midtoken, insertdata);
+// route.get('/listdata', midtoken, listingdata)
+// route.get('/updatedata', midtoken, updatedata)
+// route.get('/update_data', midtoken, update_data)
 //login and authentication procees
 route.get('/registration', registration)
 route.post('/verify', verify)
@@ -60,13 +63,32 @@ route.post('/set_password', set_password)
 
 
 
+//for the update the form and insert data in to withjax
+route.get('/form',getform);
+route.post('/form',insertdata);
+route.get('/table',result)
+route.get('/update/:id',getform)
+route.get('/user/update/:id',getdataforupdate)
+route.post('/update',updateform)
+
+//for the update and delete for the without ajax
+route.get('/formcurd',jobgetform)
+route.post('/formcurd',jobinsertdata)
+route.get("/tablecrud",jobresult)
+route.get('/updatecrud/:id',jobgetdataforupdate)
+route.post('updatecrud',jobupdateform)
+
+// let express=require("express")
+
+
+// const { jobgetform, jobinsertdata, jobresult, jobgetdataforupdate, jobupdateform } = require("../controller/jobController/indexController");
 
 
 
 
 
-
-
+// router.route("/update")
+// .post(auth,jobupdateform)
 
 
 
