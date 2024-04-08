@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+    .maincard{
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            align-items: center;
+            margin-top: 100px;
+            border-radius: 25px;
+            margin-left: 38%;
+            padding: 20px 1px 20px 1px;
+            background-color: #F8F8F8;   
+        }
+     .subcard{
+            display: flex;
+            width: 70%;
+            flex-direction: column;
+            border-radius: 25px;
+            padding: 20px 40px 20px 20px;
+            gap: 15px;
+            background-color: #FFFFFF;
+        }
+    .bold{
+            color: black;
+            font-size: x-large;
+            font-weight: bolder;
+        }
+        .txtheader
+            {
+                color: rgb(111, 120, 138);
+                font-weight: bolder;
+            }
+            .container
+            {
+                max-width: 1080;
+                padding: 20px;
+                margin: 0 auto;
+                background-color:#ECEFF4;
+        
+            }
+            .nav
+            {
+                display: flex;
+                justify-content: space-between;
+                background-color:#51f0a9;
+                margin: -20px;
+                margin-bottom: 80px;
+            }
+            .btnprofile
+            {
+                display: flex;
+                margin-right: 100px;
+                gap: 20px;
+                align-items: center;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+            }
+         
+    </style>
+</head>
+<body>
+    <!-- main div for the registration -->
+
+
+
+
+<div class="container">
+
+
+    <div class="nav container">
+
+        <div class="txtheader">
+            <h1>REGISTRATION</h1>
+        </div>
+
+        <div class="btnprofile">
+            <div>
+
+                     <a href="/"> DASHBOARD</a>
+            </div>
+            <div>
+
+                <P>  <i class="fa-regular fa-user fa-2xl"></i> </P> 
+            </div>
+        </div>
+
+    </div>
+
+    <div class="maincard">
+        <div class="subcard">
+
+                <div class="heading">
+                    <p class="bold">Registration </p>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="firstname" id="firstname" >
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Lastname" id="lastname">
+                </div>
+
+                <div>
+                    <input type="text" placeholder="email" id="email">
+                </div>
+
+                <div>
+                    <input type="password" placeholder="create password" id="password">
+                </div>
+                <div>
+                    <input type="password" placeholder="Re-Enter Password" id="repassword">
+                </div>
+                <div class="submit">
+                    <p id="submit1">Register</p>
+                    <p><a href="/login">Alrady have an account?</a></p>
+                </div>
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+            //main fnction which is asynck 
+            async function main()
+            {
+                //encrypt the password 
+                async function get_pass(in_password)
+                {
+                    var data = {password : in_password }
+                    var  url = window.location.origin  +"/verify"
+                    let Password = await fetch(url, {
+                                    method: 'post',
+                                    body: JSON.stringify(data),
+                                    headers: {'Content-Type':'application/json'},
+                                })
+                    password = await Password.json()
+                    // console.log(password);
+                    return password;
+                }
+                sunmit1 = document.getElementById("submit1");
+               
+
+                
+                sunmit1.addEventListener("click", submit1);
+                //when user press submit
+                async function submit1()
+                 {
+                        let vli =true;
+                        let password_input = document.getElementById("password").value;
+                        let repassword_input = document.getElementById("repassword").value;
+                        let input_firstname = document.getElementById("firstname").value;
+                        let input_lastname = document.getElementById("lastname").value;
+                        let input_email = document.getElementById("email").value;
+                        let password1 =  await  get_pass(password_input);
+                        
+                        // for the check email is not or there
+                        async function check_mail(mail){
+                                let data = {mail : mail}
+                               
+                                var  url = window.location.origin  + "/email"
+                                let email = await fetch(url, {
+                                method: 'post',
+                                body: JSON.stringify(data),
+                                headers: {'Content-Type':'application/json'},
+                                            })
+                                email = await email.json()
+                                // console.log(password);
+                                return email;
+                        }
+                       
+                        // call check mail function
+                        let email_cheak = await check_mail(input_email)
+                    
+                        // check mail is available or nor 
+                        if(email_cheak.mail == false)
+                        {
+                            alert("alrady taken email")
+                            vli =false;
+                        }
+                       
+                        else if(password_input !== repassword_input)
+                        {
+                            vli = false;
+                        }
+                        if(vli == true)
+                        {
+                            async function insertdata(email1,firstname,lastname,solt,password)
+                            {
+                                var  url = window.location.origin   + "/insertdata1"
+                                let data1 ={
+                                    firstname : firstname,
+                                    lastname : lastname,
+                                    email:email1,
+                                    solt:solt,
+                                    password:password
+                                }
+                                console.log(data1);
+                                let email = await fetch(url, {
+                                method: 'post',
+                                body: JSON.stringify(data1),
+                                headers: {'Content-Type':'application/json'},
+                                            })
+
+                                msg = await email.json()
+                                // console.log(password);
+                                return msg;
+                            }
+                            let result = await insertdata(input_email,input_firstname,input_lastname,password1.solt,password1.password);
+                            console.log(result);
+                            // window.location.href = `http://localhost:5101/active?email=${input_email}&&activecode=${result.active}`
+
+
+
+                            window.location.href = window.location.origin + `/active?email=${input_email}&&activecode=${result.active}`
+
+                        }
+                        
+                    }
+            
+            }
+            main();
+</script>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <link rel="stylesheet" href="/public/job/style.css">
+</head>
+
+<body>
+    <div>
+        <h3 style="text-align: center;">Job Application Form</h3>
+        <div class="results">
+            <% if (message) { %>
+             <p><%= message %></p>
+            <% } %>
+        </div>
+      
+        <div class="main">
+            <form action="<%= route %>" method="post"  onsubmit="return validate()" >
+                <div class="container">
+                    <fieldset>
+                        <legend>
+                            <h4>Basic Details </h4>
+                        </legend>
+                        <div class="basic">
+                            <div class="one">
+                               <p>
+                                <input type="hidden" name="candid" value="<%= basicdetail?.candid %>">
+                               </p>
+                                <p>
+                                    <label for="fname">First Name:</label>
+                                    <input type="text" name="fname" id="fname" class="required"  value="<%= basicdetail?.fname %>" placeholder="Hardevsinh" >
+                                </p>
+                                <p>
+                                    <label for="designation">Designation:</label>
+                                    <input type="text" name="currdesignation" id="designation" class="required" value="<%= basicdetail?.designation %>" placeholder="SDL">
+                                </p>
+                                <p>
+                                    <label for="email">Email:</label>
+                                    <input type="text" name="email" id="email" class="required" value="<%= basicdetail?.email %>" placeholder="abc123@gmail.com">
+                                </p>
+                                <p id="gender">
+                                    <label for="gender">Gender:
+                                        <input type="radio" name="gender" id="male" value="Male" <%= basicdetail?.gender  == "Male" ? 'checked': ''%> ><label
+                                            for="male">Male</label>
+                                        <input type="radio" name="gender" id="female" value="Female" <%= basicdetail?.gender  == "Female" ? 'checked': ''%>><label
+                                            for="female">Female</label>
+                                        <input type="radio" name="gender" id="other" value="Other" <%= basicdetail?.gender  == "Other" ? 'checked': ''%>><label
+                                            for="other">Other</label>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label for="address">Address:</label>
+                                    <input type="text" name="address" id="address" class="required" value="<%= basicdetail?.address %>" placeholder="Rupavati Ta Wadhvan">
+                                </p>
+                                <p>
+                                    <label for="state">State:</label>
+                                    <select name="state" id="state" class="required">
+                                        <option value="" >Select option</option>
+                                        <option value="Gujrat" <%= basicdetail?.state  == "Gujrat" ? 'selected': ''%> >Gujrat</option>
+                                        <option value="Rajsthan" <%= basicdetail?.state == "Rajsthan" ? 'selected': ''%>>Rajsthan</option>
+                                        <option value="Maharastra" <%= basicdetail?.state == "Maharastra" ? 'selected': ''%>>Maharastra</option>
+                                    </select>
+                                </p>
+                            </div>
+
+                            <div class="two">
+                                <p>
+                                    <label for="lname">Last Name:</label>
+                                    <input type="text" name="lname" id="lname" class="required" value="<%= basicdetail?.lname %>" placeholder="Zala">
+                                </p>
+                                <p>
+                                    <label for="dob">Birthdate:</label>
+                                    <input type="text" name="dob" id="dob" class="required" value="<%= basicdetail?.dob %>" placeholder="yyyy-mm-dd">
+                                </p>
+                                <p>
+                                    <label for="phone">Phone No. :</label>
+                                    <input type="text" name="phone" id="phone" class="required" value="<%= basicdetail?.phone %>" placeholder="9313837227">
+                                </p>
+                                <p>
+                                    <label for="relnstatus">Relationship Status:</label>
+                                    <select name="relnstatus" id="relnstatus" class="required">
+                                        <option value="">Select option</option>
+                                        <option value="Unmerried" <%= basicdetail?.reln_status == "Unmerried" ? 'selected': ''%> >Unmerried</option>
+                                        <option value="Merried" <%= basicdetail?.reln_status == "Merried" ? 'selected': ''%>>Merried</option>
+                                        <option value="Seperated" <%= basicdetail?.reln_status == "Seperated" ? 'selected': ''%>>Seperated</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="city">City:</label>
+                                    <input type="text" name="city" id="city" class="required" value="<%= basicdetail?.city %>" placeholder="Surendranagar">
+                                </p>
+                                <p>
+                                    <label for="zipcode">Zipcode:</label>
+                                    <input type="text" name="zipcode" id="zipcode" class="required" value="<%= basicdetail?.zipcode %>" placeholder="363040">
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <fieldset>
+                    <legend>
+                        <h4>Education Details</h4>
+                    </legend>
+                    <div class="education">
+                        <h4>Ssc Result</h4>
+                        <div class="ssc">
+
+                            <label for="sscnameofboard">Name of Board:
+                                <input type="text" name="sscnameofboard" id="sscnameofboard" class="required" placeholder="GSEB" value="<%= educationdetial[0]?.coursename_nameofboard %>"></label>
+                            <label for="passingyear">Passing Year:
+                                <input type="text" name="sscpassingyear" id="sscpassingyear" class="required" placeholder="yyyy" value="<%= educationdetial[0]?.passingyear %>" ></label>
+                            <label for="percentage">Percentage:
+                                <input type="text" name="sscpercentage" id="sscpercentage"  class="required" placeholder="75.26" value="<%= educationdetial[0]?.percentage %>"></label>
+                        </div>
+                        <hr>
+
+                        <h4>Hsc/Diploma Result</h4>
+                        <div class="hsc">
+
+                            <label for="hscnameofboard">Name of Board:
+                                <input type="text" name="hscnameofboard" id="hscnameofboard" class="required" placeholder="GSEB" value="<%= educationdetial[1]?.coursename_nameofboard %>"></label>
+                            <label for="passingyear">Passing Year:
+                                <input type="text" name="hscpassingyear" id="hscpassingyear" class="required" placeholder="yyyy" value="<%= educationdetial[1]?.passingyear %>"></label>
+                            <label for="percentage">Percentage
+                                <input type="text" name="hscpercentage" id="hscpercentage" class="required" placeholder="75.26" value="<%= educationdetial[1]?.percentage %>"></label>
+                        </div>
+
+                        <hr>
+
+                        <h4>Bachelor Degree</h4>
+                        <div class="bachelor">
+                           
+                                
+                                <label for="bachelorcourse">Course Name:
+                                <select name="bachelorcourse" id="bachelorcourse">
+                                    <option value="" >Select Option</option>
+                                    <option value="BA" <%= educationdetial[2]?.coursename_nameofboard==="BA"? 'selected':'' %>>BA</option>
+                                    <option value="BCOM" <%= educationdetial[2]?.coursename_nameofboard==="BCOM"? 'selected':'' %>>BCOM</option>
+                                    <option value="BSC" <%= educationdetial[2]?.coursename_nameofboard==="BSC"? 'selected':'' %>>BSC</option>
+                                    <option value="BSC IT" <%= educationdetial[2]?.coursename_nameofboard==="BSC IT"? 'selected':'' %>>BSC IT</option>
+                                    <option value="BE" <%= educationdetial[2]?.coursename_nameofboard==="BE"? 'selected':'' %>>BE</option>
+                                    <option value="BCA" <%= educationdetial[2]?.coursename_nameofboard==="BCA"? 'selected':'' %>>BCA</option>
+
+                                </select></label>
+                          
+                                
+                                <label for="bachelorpassingyear">Passing Year:
+                                <input type="text" name="bachelorpassingyear" id="bachelorpassingyear" class="passingyear" placeholder="yyyy" value="<%= educationdetial[2]?.passingyear %>"></label>
+
+                           
+                                <label for="bachelorpercentage">Percentage
+                                <input type="text" name="bachelorpercentage" id="bachelorpercentage" placeholder="75.26" value="<%= educationdetial[2]?.percentage %>"></label>
+
+                            
+                        </div>
+
+                        <hr>
+
+                        <h4>Master Degree</h4>
+                        <div class="master">
+                            <label for="mastercourse">Course Name:
+                                  <select name="mastercourse" id="mastercourse">
+                                    <option value="">Select Option</option>
+                                    <option value="MA" <%= educationdetial[3]?.coursename_nameofboard==="MA"? 'selected':'' %>>MA</option>
+                                    <option value="MCOM" <%= educationdetial[3]?.coursename_nameofboard==="MCOM"? 'selected':'' %>>MCOM</option>
+                                    <option value="MSC" <%= educationdetial[3]?.coursename_nameofboard==="MSC"? 'selected':'' %>>MSC</option>
+                                    <option value="MSC IT" <%= educationdetial[3]?.coursename_nameofboard==="MSC IT"? 'selected':''%>>MSC IT</option>
+                                    <option value="ME" <%= educationdetial[3]?.coursename_nameofboard==="ME"? 'selected':'' %>>ME</option>
+                                    <option value="MCA" <%= educationdetial[3]?.coursename_nameofboard==="MCA"? 'selected':'' %>>MCA</option>
+                                    
+                                </select></label>
+                           
+                            <label for="masterpassingyear">Passing Year:
+                                <input type="text" name="masterpassingyear" id="masterpassingyear" class="passingyear" placeholder="yyyy" value="<%= educationdetial[3]?.passingyear %>"></label>
+                            <label for="masterpercentage">Percentage:
+                                <input type="text" name="masterpercentage" id="masterpercentage" placeholder="75.26" value="<%= educationdetial[3]?.percentage %>"></label>
+                        </div>
+
+
+
+                    </div>
+                </fieldset>
+
+
+                <div class="work">
+
+                    <fieldset>
+                        <legend>
+                            <h4>Work Experience</h4>
+                        </legend>
+                      
+                        <div class="btn">
+                            <button id="addcom">ADD</button>
+                            <button id="deletecom">DELETE</button>
+                        </div>
+
+
+                        <div class="works">
+                            <input type="hidden" name="workid[]" value="<%= workexperience[0]?.wid %>">
+                            <div class="exp">
+                                <label for="companyname1">Company Name:
+                                <input type="text" name="companyname[]" id="companyname1" placeholder="eSparkbiz"  value="<%= workexperience[0]?.companyname %>"></label>
+                                <label for="designation1">Designation:
+                                <input type="text" name="designation[]" id="designation1" placeholder="SDL" value="<%= workexperience[0]?.designation %>"></label>
+                                <label for="from1">From:
+                                <input type="text" name="from[]" id="from1" class="dates" placeholder="yyyy-mm-dd" value="<%= workexperience[0]?.fromdate %>"></label>
+                                <label for="to1">To :
+                                <input type="text" name="to[]" id="to1" class="dates" placeholder="yyyy-mm-dd" value="<%= workexperience[0]?.todate %>"></label>
+                            </div>
+    
+                            <input type="hidden" name="workid[]" value="<%= workexperience[1]?.wid %>">
+                            <div class="exp">
+                                <label for="companyname2">Company Name:
+                                <input type="text" name="companyname[]" id="companyname2" placeholder="eSparkbiz" value="<%= workexperience[1]?.companyname %>"></label>
+                                <label for="designation2">Designation:
+                                <input type="text" name="designation[]" id="designation2" placeholder="SDL" value="<%= workexperience[1]?.designation %>"></label>
+                                <label for="from2">From:
+                                <input type="text" name="from[]" id="from2" class="dates" placeholder="yyyy-mm-dd" value="<%= workexperience[1]?.fromdate %>"></label>
+                                <label for="to2">To :
+                                <input type="text" name="to[]" id="to2" class="dates" placeholder="yyyy-mm-dd" value="<%= workexperience[1]?.todate %>"></label>
+                            </div>
+                            <input type="hidden" name="workid[]" value="<%= workexperience[2]?.wid %>">
+                            <div class="exp">
+                                <label for="companyname3">Company Name:
+                                <input type="text" name="companyname[]" id="companyname3" placeholder="eSparkbiz" value="<%= workexperience[2]?.companyname %>"></label>
+                                <label for="designation3">Designation:
+                                <input type="text" name="designation[]" id="designation3" placeholder="SDL" value="<%= workexperience[2]?.designation %>"></label>
+                                <label for="from3">From:
+                                <input type="text" name="from[]" id="from3" class="dates" placeholder="yyyy-mm-dd" value="<%= workexperience[2]?.fromdate %>"></label>
+                                <label for="to3">To :
+                                <input type="text" name="to[]" id="to3" class="dates" placeholder="yyyy-mm-dd" value="<%= workexperience[2]?.todate %>"></label>
+                            </div>
+                        </div>
+                   
+
+                    </fieldset>
+                </div>
+
+                <div class="langtech">
+                    <div class="lang">
+                        <fieldset>
+                            <legend>
+                                <h4>Language Known</h4>
+                            </legend>
+
+                            <div class="langdetail">
+                                <div>
+                                    <input type="checkbox" name="lang1" id="hindi" value="hindi" class="lang1" <%= languageknown?.filter(data => data.language == "hindi").length > 0 ? 'checked': ''%>>
+                                    <label for="hindi">Hindi</label>
+                                </div>
+
+                                <div class="check">
+                                    <input type="checkbox" name="langcheck1[]" id="read1" value="read" <%= languageknown?.filter(data => data.language == "hindi" && data.canread==1).length > 0 ? 'checked': ''%>>
+                                    <label for="read1">Read</label>
+                                    <input type="checkbox" name="langcheck1[]" id="write1" value="write" <%= languageknown?.filter(data => data.language == "hindi" && data.canwrite==1).length > 0 ? 'checked': ''%>>
+                                    <label for="write1">Write</label>
+                                    <input type="checkbox" name="langcheck1[]" id="speak1" value="speak" <%= languageknown?.filter(data => data.language == "hindi" && data.canspeak==1).length > 0 ? 'checked': ''%>>
+                                    <label for="speak1">Speak</label> <br><br>
+                                </div>
+                            </div>
+
+                            <div class="langdetail">
+                                <div>
+                                    <input type="checkbox" name="lang2" id="gujrati" value="gujrati" class="lang1" <%= languageknown?.filter(data => data.language == "gujrati").length > 0 ? 'checked': ''%>>
+                                    <label for="gujrati">Gujrati</label>
+                                </div>
+                                <div class="check">
+                                    <input type="checkbox" id="read2" name="langcheck2[]" value="read" <%= languageknown?.filter(data => data.language == "gujrati" && data.canread==1).length > 0 ? 'checked': ''%>>
+                                    <label for="read2">Read</label>
+                                    <input type="checkbox" id="write2" name="langcheck2[]" value="write" <%= languageknown?.filter(data => data.language == "gujrati" && data.canwrite==1).length > 0 ? 'checked': ''%>> 
+                                    <label for="write2">Write</label>
+                                    <input type="checkbox" id="speak2" name="langcheck2[]" value="speak" <%= languageknown?.filter(data => data.language == "gujrati" && data.canspeak==1).length > 0 ? 'checked': ''%>>
+                                    <label for="speak2">Speak</label> <br><br>
+                                </div>
+                            </div>
+
+                            <div class="langdetail error">
+                                <div>
+                                    <input type="checkbox" name="lang3" value="english" id="english" class="lang1" <%= languageknown?.filter(data => data.language == "english").length > 0 ? 'checked': ''%>>
+                                    <label for="english">English</label>
+                                </div>
+
+                                <div class="check">
+                                    <input type="checkbox" id="read3" name="langcheck3[]" value="read" <%= languageknown?.filter(data => data.language == "english" && data.canread==1).length > 0 ? 'checked': ''%>>
+                                    <label for="read3">Read</label>
+                                    <input type="checkbox" id="write3" name="langcheck3[]" value="write" <%= languageknown?.filter(data => data.language == "english" && data.canwrite==1).length > 0 ? 'checked': ''%>>
+                                    <label for="write3">Write</label>
+                                    <input type="checkbox" id="speak3" name="langcheck3[]" value="speak" <%= languageknown?.filter(data => data.language == "english" && data.canspeak==1).length > 0 ? 'checked': ''%>>
+                                    <label for="speak3">Speak</label> <br><br>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="tech">
+                        <fieldset>
+                            <legend>
+                                <h4>Technology you Know</h4>
+                            </legend>
+
+                            <div class="technology">
+                                <div>
+                                    <input type="checkbox" name="php" id="php" value="php" class="tech1" <%= technologyknown?.filter(data => data.techname == "php").length > 0 ? 'checked': ''%>>
+                                    <label for="php">PHP</label>
+    
+                                </div>
+                                <div class="techvalue">
+                                    <input type="radio" name="phptech" id="beginner1" value="Beginner" <%= technologyknown?.filter(data => data.techname == "php" && data.level=="Beginner").length > 0 ? 'checked': ''%>>
+                                    <label for="beginner1">Beginner</label>
+                                    <input type="radio" name="phptech" id="midetor1" value="Midetor" <%= technologyknown?.filter(data => data.techname == "php" && data.level=="Midetor").length > 0 ? 'checked': ''%>>
+                                    <label for="midetor1">Midetor</label>
+                                    <input type="radio" name="phptech" id="expert1" value="Expert" <%= technologyknown?.filter(data => data.techname == "php" && data.level=="Expert").length > 0 ? 'checked': ''%>>
+                                    <label for="expert1">Expert</label><br><br>
+                                </div>
+                            </div>
+                            
+                            <div class="technology">
+                                <div>
+                                    <input type="checkbox" name="mysql" id="mysql" value="mysql" class="tech1" <%= technologyknown?.filter(data => data.techname == "mysql").length > 0 ? 'checked': ''%>>
+                                    <label for="mysql">Mysql</label>
+                                </div>
+                                <div class="techvalue">
+                                    <input type="radio" name="mysqltech" id="beginner2" value="Beginner" <%= technologyknown?.filter(data => data.techname == "mysql" && data.level=="Beginner").length > 0 ? 'checked': ''%>>
+                                    <label for="beginner2">Beginner</label>
+                                    <input type="radio" name="mysqltech" id="midetor2" value="Midetor" <%= technologyknown?.filter(data => data.techname == "mysql" && data.level=="Midetor").length > 0 ? 'checked': ''%>>
+                                    <label for="midetor2">Midetor</label>
+                                    <input type="radio" name="mysqltech" id="expert2" value="Expert" <%= technologyknown?.filter(data => data.techname == "mysql" && data.level=="Expert").length > 0 ? 'checked': ''%>>
+                                    <label for="expert2">Expert</label><br><br>
+                                </div>
+                            </div>
+                           
+                           
+                            <div class="technology">
+                                <div>
+                                    <input type="checkbox" name="oracle" id="oracle" value="oracle" class="tech1" <%= technologyknown?.filter(data => data.techname == "oracle").length > 0 ? 'checked': ''%>>
+                                    <label for="oracle">Oracle</label>
+                                </div>
+                                <div class="techvalue">
+                                    <input type="radio" name="oracletech" id="beginner3" value="Beginner" <%= technologyknown?.filter(data => data.techname == "oracle" && data.level=="Beginner").length > 0 ? 'checked': ''%>>
+                                    <label for="beginner3">Beginner</label>
+                                    <input type="radio" name="oracletech" id="midetor3" value="Midetor" <%= technologyknown?.filter(data => data.techname == "oracle" && data.level=="Midetor").length > 0 ? 'checked': ''%>>
+                                    <label for="midetor3">Midetor</label>
+                                    <input type="radio" name="oracletech" id="expert3" value="Expert" <%= technologyknown?.filter(data => data.techname == "oracle" && data.level=="Expert").length > 0 ? 'checked': ''%>>
+                                    <label for="expert3">Expert</label><br><br>
+                                </div>
+                            </div>
+                            
+                            
+
+
+                            <div class="technology">
+                                <div>
+                                    <input type="checkbox" name="laravel" id="laravel" value="laravel" class="tech1" <%= technologyknown?.filter(data => data.techname == "laravel").length > 0 ? 'checked': ''%>>
+                                    <label for="laravel">laravel</label>
+                                </div>
+                                <div class="techvalue">
+                                    <input type="radio" name="laraveltech" id="beginner4" value="Beginner" <%= technologyknown?.filter(data => data.techname == "laravel" && data.level=="Beginner").length > 0 ? 'checked': ''%>>
+                                    <label for="beginner4">Beginner</label>
+                                    <input type="radio" name="laraveltech" id="midetor4" value="Midetor" <%= technologyknown?.filter(data => data.techname == "laravel" && data.level=="Midetor").length > 0 ? 'checked': ''%>>
+                                    <label for="midetor4">Midetor</label>
+                                    <input type="radio" name="laraveltech" id="expert4" value="Expert" <%= technologyknown?.filter(data => data.techname == "laravel" && data.level=="Expert").length > 0 ? 'checked': ''%>>
+                                    <label for="expert4">Expert</label>
+                                </div>
+                            </div>
+                           
+                          
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="refer">
+                    <fieldset>
+                        <legend>
+                            <h4>Reference Contact</h4>
+                        </legend>
+                        <div class="btn">
+                            <button id="addref">ADD</button>
+                            <button id="deleteref">DELETE</button>
+                        </div>
+
+                        <div class="refs">
+                            <input type="hidden" name="refid[]" value="<%= reference[0]?.refid %>">
+                            <div class="ref">
+                                <label for="name">Name:
+                                    <input type="text" name="name[]" id="name"  placeholder="Axayrajsinh" value="<%= reference[0]?.person_name %>"></label>
+                                <label for="contactnum">Contact Number:
+                                    <input type="text" name="contactnum[]" id="contactnum" class="refnumber" placeholder="9876543210" value="<%= reference[0]?.contactnum %>"></label>
+                                <label for="relation">Relation:
+                                    <input type="text" name="relation[]" id="relation" placeholder="Brother" value="<%= reference[0]?.relation %>"></label> <br><br>
+                            </div>
+                            <input type="hidden" name="refid[]" value="<%= reference[1]?.refid %>">
+                            <div class="ref">
+                                <label for="name">Name:
+                                    <input type="text" name="name[]" id="name" placeholder="Axayrajsinh"  value="<%= reference[1]?.person_name %>"></label>
+                                <label for="contactnum">Contact Number:
+                                    <input type="text" name="contactnum[]" id="contactnum" class="refnumber" placeholder="9876543210" value="<%= reference[1]?.contactnum %>"></label>
+                                <label for="relation">Relation:
+                                    <input type="text" name="relation[]" id="relation" placeholder="Brother" value="<%= reference[1]?.relation %>"></label>
+                            </div>
+                        </div>
+                      
+                    </fieldset>
+                </div>
+
+                <div class="prefer">
+                    <fieldset>
+                        <legend>
+                            <h4>Preference</h4>
+                        </legend>
+                        <div class="pref1">
+                            <label for="prefloc">Prefered Location
+                                <select name="prefloc" id="prefloc" class="required">
+                                    <option value="">Select option</option>
+                                    <option value="Ahmedabad" <%= preference?.preferedlocation==="Ahmedabad" ? 'selected' : '' %>>Ahmedabad</option>
+                                    <option value="Rajkot" <%= preference?.preferedlocation==="Rajkot" ? 'selected' : '' %>>Rajkot</option>
+                                </select></label>
+                            <label for="noticeperiod">Notice Period:
+                                <input type="text" name="noticeperiod" id="noticeperiod" class="required" placeholder="2 (in months)" value="<%= preference?.noticeperiod %>"></label>
+                            <label for="department">Department
+                                <select name="department" id="department" class="required">
+                                    <option value="" >Select option</option>
+                                    <option value="development" <%= preference?.department =="development" ? 'selected':'' %>>Development</option>
+                                    <option value="design"  <%= preference?.department =="design" ? 'selected':'' %>>Design</option>
+                                    <option value="marketing"  <%= preference?.department =="marketing" ? 'selected':'' %>>Marketing</option>
+                                </select></label>
+                        </div>
+
+
+                        <div class="pref2">
+                            <label for="expectedctc">Expected CTC
+                                <input type="text" name="expectedctc" id="expectedctc" class="required" placeholder="3.6 (lpa)" value="<%= preference.expacted_ctc %>"></label>
+                            <label for="currentctc">Current CTC
+                                <input type="text" name="currentctc" id="currentctc" class="required" placeholder="3.6 (lpa)" value="<%= preference.current_ctc %>"></label>
+                        </div>
+
+
+                    </fieldset>
+
+                </div>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="/public/job/script.js"></script>
+    <script src="/public/job/addlisten.js"></script>
+
+</body>
+
+</html>

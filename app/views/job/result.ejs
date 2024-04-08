@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Data</title>
+
+    <link rel="stylesheet" href="/public/job/result.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div>
+            <button><a href="/job/form">Click here to insert data...</a></button>
+        </div>
+        <div>
+            <table>
+                <% let array=Object.keys(result[0]) %>
+                    <tr>
+                        <% array.forEach(element=> { %>
+                            <% if (element!=="candid" ) { %>
+                                <td>
+
+                                    <%= element %>
+
+
+                                </td>
+                                <% } %>
+                                    <% }) %>
+                                        <td>
+                                            View
+                                        </td>
+
+                    </tr>
+                    <% result.forEach(element=> { %>
+                        <tr>
+                            <% for( let i=0; i < array.length; i++ ) { %>
+
+                                <% if (array[i]!=="candid" ) { %>
+                                    <td>
+                                        <%= element[array[i]] %>
+                                    </td>
+                                    <% } %>
+
+
+                                        <% } %>
+                                            <td>
+                                                <button><a href="/job/update/<%= element.candid %>">Click..</a></button>
+                                            </td>
+
+                                            <% }) %>
+                        </tr>
+
+
+            </table>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
