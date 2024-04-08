@@ -368,9 +368,9 @@ const updatepreference = async (req, res, uid) => {
 
 const getdata = async (req, res, table, uid, order) => {
     let sql = `select * from ${table} where candid=${uid} order by ${order}`;
-
+    console.log(sql);
     let [result] = await conn.query(sql);
-
+    console.log(result);
     return result;
 
 }
@@ -379,8 +379,9 @@ exports.getdataforupdate = async (req, res) => {
     try {
 
         let id = Number(req.params.id);
+        console.log(id);
 
-        let basicdetail = await getdata(req, res, "basicdetails", id, "candid")
+        let basicdetail = await getdata(req, res, "basicdetails", id, "candid");
 
         let educationdetial = await getdata(req, res, "educationdetails", id, "eid")
 
@@ -393,9 +394,12 @@ exports.getdataforupdate = async (req, res) => {
         let reference = await getdata(req, res, "reference", id, "refid")
 
         let preference = await getdata(req, res, "preferences", id, "pid")
+        console.log(preference[0]);
+        console.log("object");
 
         return res.json({
-            route: "/ajax/update",
+            success: true,
+            route: "/update",
             basicdetail: basicdetail[0], educationdetial: educationdetial, workexperience: workexperience, languageknown: languageknown,
             technologyknown: technologyknown, reference: reference, preference: preference[0], message: ""
         })

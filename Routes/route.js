@@ -64,19 +64,19 @@ route.post('/set_password', set_password)
 
 
 //for the update the form and insert data in to withjax
-route.get('/form',getform);
-route.post('/form',insertdata);
-route.get('/table',result)
-route.get('/update/:id',getform)
-route.get('/user/update/:id',getdataforupdate)
-route.post('/update',updateform)
+route.get('/form', getform);
+route.post('/form', insertdata);
+route.get('/table', result)
+route.get('/update/:id', getform)
+route.get('/user/update/:id', getdataforupdate)
+route.post('/update', updateform)
 
 //for the update and delete for the without ajax
-route.get('/formcurd',jobgetform)
-route.post('/formcurd',jobinsertdata)
-route.get("/tablecrud",jobresult)
-route.get('/updatecrud/:id',jobgetdataforupdate)
-route.post('updatecrud',jobupdateform)
+route.get('/formcurd', jobgetform)
+route.post('/formcurd', jobinsertdata)
+route.get("/tablecrud", jobresult)
+route.get('/updatecrud/:id', jobgetdataforupdate)
+route.post('/updatecrud', jobupdateform)
 
 // let express=require("express")
 

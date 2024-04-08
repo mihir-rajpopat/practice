@@ -4,7 +4,7 @@ async function update() {
     if (url!="/form") {
         url=url.split("/").pop()
         let urlmain = window.location.origin 
-        urlmain += `/update/${url}`
+        urlmain += `/user/update/${url}`
         let data = await fetch(urlmain, {
         method: "GET",
         headers: {

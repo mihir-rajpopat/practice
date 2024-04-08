@@ -537,10 +537,14 @@ next.addEventListener("click", async function (e) {
                 data.append(pair[0], pair[1]);
             }
             let url=window.location.origin;
+            console.log(window.location.pathname);
+            
             if (window.location.pathname !== "/form") {
-                url+="/update"            
+                url+="/update"
+                console.log(url);            
             }else{
                 url+="/form"
+                console.log(url);
             }
 
             let d = await fetch(url, {

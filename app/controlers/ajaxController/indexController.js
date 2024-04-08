@@ -243,6 +243,7 @@ const generatecombo = async (req, res, comboname, type, val = "") => {
 exports.getform = async (req, res) => {
     try {
         return res.render("ajax/home", {
+            success:true,
             route: "/form",
             basicdetail: {}, educationdetial: {}, workexperience: [], languageknown: [],
             technologyknown: [], reference: {}, preference: {}, message: ""
