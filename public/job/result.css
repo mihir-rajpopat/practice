@@ -17,7 +17,33 @@
     margin: 0 auto;
     padding: 40px 0;
 }
+.txtheader {
+    color: rgb(111, 120, 138);
+    font-weight: bolder;
+}
 
+.container {
+    max-width: 1080;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #ECEFF4;
+
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #51f0a9;
+    margin: -20px;
+    margin-bottom: 80px;
+}
+
+.btnprofile {
+    display: flex;
+    margin-right: 100px;
+    gap: 20px;
+    align-items: center;
+}
 
 table,
 tr,

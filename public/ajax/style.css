@@ -8,7 +8,33 @@
     font-size: 20px;
     color: rgb(147, 75, 75);
 }
+.txtheader {
+    color: rgb(111, 120, 138);
+    font-weight: bolder;
+}
 
+.container {
+    max-width: 1080;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #ECEFF4;
+
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #51f0a9;
+    margin: -20px;
+    margin-bottom: 80px;
+}
+
+.btnprofile {
+    display: flex;
+    margin-right: 100px;
+    gap: 20px;
+    align-items: center;
+}
 
 .main {
     margin: 15px;
@@ -131,6 +157,36 @@ select {
     padding: 20px 0;
 }
 
+
+
+
+.txtheader {
+    color: rgb(111, 120, 138);
+    font-weight: bolder;
+}
+
+.container {
+    max-width: 1080;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #ECEFF4;
+
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #51f0a9;
+    margin: -20px;
+    margin-bottom: 80px;
+}
+
+.btnprofile {
+    display: flex;
+    margin-right: 100px;
+    gap: 20px;
+    align-items: center;
+}
 
 .educationdetails,
 .work,
